@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_home"
+        android:enabled="true"
+        android:title="Home"
+        android:icon="@drawable/home" />
+
+    <item
+        android:id="@+id/action_history"
+        android:enabled="true"
+        android:title="Order History"
+        android:icon="@drawable/history"
+         />
+    <item
+        android:id="@+id/action_info"
+        android:enabled="true"
+        android:title="Favourites"
+        android:icon="@drawable/facourite"
+        />
+    <item
+        android:id="@+id/action_msg"
+        android:enabled="true"
+        android:title="Notification"
+        android:icon="@drawable/notify"
+        />
+   <item
+        android:id="@+id/action_profile"
+        android:enabled="true"
+        android:title="Profile"
+        android:icon="@drawable/profileicon"
+        />
+
+</menu>

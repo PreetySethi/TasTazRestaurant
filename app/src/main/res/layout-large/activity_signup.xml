@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/backgroundlogin"
+    tools:context=".Activities.SignupActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="20dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="220dp"
+                android:layout_height="wrap_content">
+
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:id="@+id/img_profile"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/dummyprofile"
+                    app:civ_border_color="@android:color/white"
+                    app:civ_border_width="5dp" />
+
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:id="@+id/img_plus"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_alignBottom="@id/img_profile"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/icon"
+                    app:civ_border_width="1dp"
+                    app:civ_shadow_radius="1" />
+                <!-- <com.google.android.material.floatingactionbutton.FloatingActionButton
+                 android:layout_width="@dimen/ic_plus_width"
+                 app:backgroundTint="@color/colorblue"
+                 android:layout_alignParentRight="true"
+                 android:layout_height="@dimen/ic_plus_width">
+             </com.google.android.material.floatingactionbutton.FloatingActionButton>-->
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:gravity="center">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:textColorHint="@color/colorgeydark"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/et_user"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="Name"
+                        android:textStyle="bold"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:textColor="@android:color/white"
+                        android:textSize="28sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:textColorHint="@color/colorgeydark"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/et_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:drawablePadding="16dp"
+                        android:hint="Email"
+                        android:textStyle="bold"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:textColor="@android:color/white"
+                        android:textSize="28sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:textColorHint="@color/colorgeydark"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/et_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:drawablePadding="16dp"
+                        android:hint="Password"
+                        android:textStyle="bold"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:textColor="@android:color/white"
+                        android:textSize="28sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:textColorHint="@color/colorgeydark"
+                    android:layout_height="match_parent">
+                    <!--  <LinearLayout
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal">-->
+
+                    <!--   <TextView
+                           android:id="@+id/txt_mobile"
+                           android:layout_width="wrap_content"
+                           android:layout_height="match_parent"
+                           android:padding="10dp"
+                           android:hint="+974"
+                           android:textColorHint="@color/colorwhite"
+                           android:textStyle="bold"
+                           android:textColor="@color/colorwhite"
+                           android:textSize="15sp" />-->
+
+                    <EditText
+                        android:id="@+id/et_mob"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:drawablePadding="16dp"
+                        android:hint="Mobile | +974"
+                        android:textStyle="bold"
+                        android:textColorHint="@color/colorwhite"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:textColor="@android:color/white"
+                        android:textSize="28sp" />
+                    <!--  </LinearLayout>-->
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/submit_request"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginStart="72dp"
+                    android:layout_marginEnd="72dp"
+                    android:layout_marginTop="72dp"
+                    android:padding="20dp"
+                    android:background="@drawable/et_bg"
+                    android:text="Sign Up"
+                    android:textSize="20dp"
+                    android:textColor="@color/colorwhite" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

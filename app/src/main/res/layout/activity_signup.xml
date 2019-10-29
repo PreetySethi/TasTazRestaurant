@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundlogin"
+    android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_margin="20dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_height="match_parent">
+                    <RelativeLayout
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content">
+
+                    <com.mikhaellopez.circularimageview.CircularImageView
+                        android:id="@+id/img_profile"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginTop="@dimen/activity_padding"
+                        android:layout_marginBottom="@dimen/activity_padding"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/dummyprofile"
+                        app:civ_border_color="@android:color/white"
+                        app:civ_border_width="5dp" />
+
+                    <com.mikhaellopez.circularimageview.CircularImageView
+                        android:id="@+id/img_plus"
+                        android:layout_width="@dimen/ic_plus_width"
+                        android:layout_height="@dimen/ic_plus_width"
+                        android:layout_alignBottom="@id/img_profile"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/icon"
+                        app:civ_border_width="1dp"
+                        app:civ_shadow_radius="1" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:layout_margin="20dp"
+                        android:gravity="center">
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:textColorHint="@color/colorgeydark"
+                            android:layout_height="match_parent">
+
+                            <EditText
+                                android:id="@+id/et_user"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:hint="Name"
+                                android:textStyle="bold"
+                                android:inputType="textEmailAddress"
+                                android:maxLines="1"
+                                android:textColor="@android:color/white"
+                                android:textSize="18sp" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:textColorHint="@color/colorgeydark"
+                            android:layout_height="match_parent">
+
+                            <EditText
+                                android:id="@+id/et_email"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:drawablePadding="16dp"
+                                android:hint="Email"
+                                android:textStyle="bold"
+                                android:inputType="textEmailAddress"
+                                android:maxLines="1"
+                                android:textColor="@android:color/white"
+                                android:textSize="18sp" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:textColorHint="@color/colorgeydark"
+                            android:layout_height="match_parent">
+                            <EditText
+                                android:id="@+id/et_mob"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:drawablePadding="16dp"
+                                android:hint="Mobile | +974"
+                                android:textStyle="bold"
+                                android:textColorHint="@color/colorwhite"
+                                android:inputType="number"
+                                android:maxLines="1"
+                                android:textColor="@android:color/white"
+                                android:textSize="18sp" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:textColorHint="@color/colorgeydark"
+                            android:layout_height="match_parent">
+
+                            <EditText
+                                android:id="@+id/et_password"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:drawablePadding="16dp"
+                                android:hint="Password"
+                                android:textStyle="bold"
+                                android:inputType="textEmailAddress"
+                                android:maxLines="1"
+                                android:textColor="@android:color/white"
+                                android:textSize="18sp" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:textColorHint="@color/colorgeydark"
+                            android:layout_height="match_parent">
+                            <EditText
+                                android:id="@+id/et_con_password"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:drawablePadding="16dp"
+                                android:hint="Confirm Password"
+                                android:textStyle="bold"
+                                android:inputType="textEmailAddress"
+                                android:maxLines="1"
+                                android:textColor="@android:color/white"
+                                android:textSize="18sp" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <Button
+                            android:id="@+id/submit_request"
+                            android:background="@drawable/et_bg"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Sign Up"
+                            android:textSize="20sp"
+                            android:gravity="center"
+                            android:textColor="@color/colorwhite"
+                            android:padding="12dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="50dp"/>
+
+
+                    </LinearLayout>
+            </LinearLayout>
+    </ScrollView>
+</LinearLayout>

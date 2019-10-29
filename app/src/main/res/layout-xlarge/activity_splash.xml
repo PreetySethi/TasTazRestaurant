@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:layout_height="match_parent"
+    tools:context=".Activities.SplashActivity">
+
+<!--<LinearLayout
+    android:id="@+id/splash"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="507dp"
+        android:layout_height="251dp"
+        android:layout_gravity="center"
+        android:src="@drawable/login_logo"></ImageView>
+
+    <ImageView
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="103dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/tagline"></ImageView>
+
+</LinearLayout>-->
+
+    <VideoView
+        android:layout_width="match_parent"
+        android:id="@+id/videosplash"
+        android:layout_gravity="center"
+        android:scaleY="4"
+        android:scaleX="4"
+        android:layout_height="match_parent">
+    </VideoView>
+
+
+</LinearLayout>
