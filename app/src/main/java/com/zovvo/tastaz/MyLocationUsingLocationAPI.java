@@ -104,8 +104,10 @@ public class MyLocationUsingLocationAPI extends AppCompatActivity implements Con
                 pref = getSharedPreferences("Registration", 0);
                 // retrieving value from Registration
                 String name = pref.getString("name", null);
+                String contact = pref.getString("contact", null);
                 // Now set these value into textview of second activity
-                tx.setText("Hii... "+name);
+             //   tx.setText("Hii... "+name);
+                    tx.setText(name);
                 /*    For showing the name in other activty*/
 
 

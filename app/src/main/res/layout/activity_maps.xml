@@ -73,6 +73,20 @@
             android:hint="Location"
             android:textSize="20sp"
             android:visibility="invisible" />
+        <TextView
+            android:id="@+id/txt_cus_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="name"
+            android:textSize="20sp"
+            android:visibility="invisible" />
+        <TextView
+            android:id="@+id/txt_cus_contact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="contact"
+            android:textSize="20sp"
+            android:visibility="invisible" />
 
 
     </RelativeLayout>

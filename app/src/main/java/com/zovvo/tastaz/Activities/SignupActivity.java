@@ -262,6 +262,7 @@ import java.util.Map;
 
            editor = pref.edit();
            editor.putString("name", name);
+           editor.putString("contact", contact);
            editor.commit();
 
 

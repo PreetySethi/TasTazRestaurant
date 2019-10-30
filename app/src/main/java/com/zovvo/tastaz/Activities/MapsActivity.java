@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.location.Address;
@@ -23,10 +24,13 @@ import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -56,6 +60,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -70,25 +75,35 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     Location currentLocation;
     FusedLocationProviderClient fusedLocationProviderClient;
     private static final int REQUEST_CODE = 101;
-    TextView loc_latitude;
-    TextView loc_longitude;
-    TextView active_location;
-    private TextView resutText;
-    private static  final int REQUEST_LOCATION=1;
+    TextView lon, lat, active_location, resutText, cusname, cuscontact;
+    private static final int REQUEST_LOCATION = 1;
     List<Place.Field> placeField = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS);
-    private static String update_url = "http://192.168.8.108/tas-taz/public/api/user/"+"id";
+    private static String update_url = "http://192.168.8.108/tas-taz/public/api/user/6";
+
+    SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        TextView tx = (TextView) findViewById(R.id.txt_cus_name);
+        TextView txt = (TextView) findViewById(R.id.txt_cus_contact);
 
-       // requestPermission();
+        pref = getSharedPreferences("Registration", 0);
+        // retrieving value from Registration
+        String name = pref.getString("name", null);
+        String contact = pref.getString("contact", null);
+
+        // Now set these value into textview of second activity
+        tx.setText(name);
+        txt.setText(contact);
+
+        // requestPermission();
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         configureCameraIdle();
         fetchLastLocation();
 
-        ActivityCompat.requestPermissions(this,new String[]
+        ActivityCompat.requestPermissions(this, new String[]
                 {Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
 
         initSearchList();
@@ -101,44 +116,44 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
 
         Button save = (Button) findViewById(R.id.save_add);
-        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/NevisBold-KGwl.ttf");
+        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/NevisBold-KGwl.ttf");
         save.setTypeface(custom_font);
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                RegisterLocWithVolley();
+                sendRequest();
             }
         });
 
         EditText address = (EditText) findViewById(R.id.et_address);
-        Typeface address_font = Typeface.createFromAsset(getAssets(),  "fonts/NevisBold-KGwl.ttf");
+        Typeface address_font = Typeface.createFromAsset(getAssets(), "fonts/NevisBold-KGwl.ttf");
         address.setTypeface(address_font);
 
-        TextView result= (TextView) findViewById(R.id.dragg_result);
-        Typeface loc_text = Typeface.createFromAsset(getAssets(),  "fonts/NevisBold-KGwl.ttf");
+        TextView result = (TextView) findViewById(R.id.dragg_result);
+        Typeface loc_text = Typeface.createFromAsset(getAssets(), "fonts/NevisBold-KGwl.ttf");
         result.setTypeface(loc_text);
-        loc_latitude=(TextView) findViewById(R.id.txt_cus_latitude);
-        loc_longitude=(TextView) findViewById(R.id.txt_cus_longitude);
-        active_location= (TextView) findViewById(R.id.txt_cus_location);
+        lat = (TextView) findViewById(R.id.txt_cus_latitude);
+        lon = (TextView) findViewById(R.id.txt_cus_longitude);
+        active_location = (TextView) findViewById(R.id.txt_cus_location);
+        cusname = (TextView) findViewById(R.id.txt_cus_name);
+        cuscontact = (TextView) findViewById(R.id.txt_cus_contact);
 
     }
 
     private void fetchLastLocation() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
-        {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},REQUEST_CODE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
             return;
         }
         Task<Location> task = fusedLocationProviderClient.getLastLocation();
         task.addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
-                if(location != null)
-                {
+                if (location != null) {
                     currentLocation = location;
-                    Toast.makeText(MapsActivity.this, currentLocation.getLatitude()+""+currentLocation.getLongitude(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MapsActivity.this, currentLocation.getLatitude() + "" + currentLocation.getLongitude(), Toast.LENGTH_SHORT).show();
                     SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                             .findFragmentById(R.id.map);
                     mapFragment.getMapAsync(MapsActivity.this);
@@ -150,16 +165,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-     LatLng latLng = new LatLng(currentLocation.getLatitude(),currentLocation.getLongitude());
-     MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("I AM Here");
-     //  googleMap.addMarker(markerOptions);
+        LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
+        MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("I AM Here");
+        //  googleMap.addMarker(markerOptions);
         googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
 
         mMap.setOnCameraIdleListener(onCameraIdleListener);
 
 
     }
+
     private void configureCameraIdle() {
         onCameraIdleListener = new GoogleMap.OnCameraIdleListener() {
             @Override
@@ -177,7 +193,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         //String area = addressList.get(0).getSubAdminArea();
                         //String country = addressList.get(0).setCountryName();
                         if (!locality.isEmpty())
-                          resutText.setText(locality );
+                            resutText.setText(locality);
                     }
 
                 } catch (IOException e) {
@@ -187,68 +203,67 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         };
     }
-     private void initSearchList(){
-         //Initialize Places. For simplicity, the API key is hard-coded.
-         if(!Places.isInitialized()){
-             Places.initialize(getApplicationContext(),getResources().getString(R.string.places_api_key));
-         }
 
-     // Initialize the AutocompleteSupportFragment.
-     AutocompleteSupportFragment autocompleteFragment=(AutocompleteSupportFragment)
-             getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+    private void initSearchList() {
+        //Initialize Places. For simplicity, the API key is hard-coded.
+        if (!Places.isInitialized()) {
+            Places.initialize(getApplicationContext(), getResources().getString(R.string.places_api_key));
+        }
 
-     ImageView searchIcon = (ImageView)((LinearLayout)autocompleteFragment.getView()).getChildAt(0);
-     // Set the desired icon
-     searchIcon.setImageDrawable(getResources().getDrawable(R.drawable.search));
+        // Initialize the AutocompleteSupportFragment.
+        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
+                getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+
+        ImageView searchIcon = (ImageView) ((LinearLayout) autocompleteFragment.getView()).getChildAt(0);
+        // Set the desired icon
+        searchIcon.setImageDrawable(getResources().getDrawable(R.drawable.search));
 
 
-     autocompleteFragment.getView().setBackgroundResource(R.drawable.map_bg);
-     autocompleteFragment.setHint("Search Here");
-     autocompleteFragment.setCountry("QA");
-     searchIcon.setOnClickListener(new View.OnClickListener() {
-         @Override
-         public void onClick(View view) {
-             Toast.makeText(MapsActivity.this, "TYPE YOUR DESIRED LOCATION", Toast.LENGTH_SHORT).show();
-         }
-     });
+        autocompleteFragment.getView().setBackgroundResource(R.drawable.map_bg);
+        autocompleteFragment.setHint("Search Here");
+        autocompleteFragment.setCountry("QA");
+        searchIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MapsActivity.this, "TYPE YOUR DESIRED LOCATION", Toast.LENGTH_SHORT).show();
+            }
+        });
 
-     autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID,Place.Field.NAME,Place.Field.LAT_LNG,Place.Field.ADDRESS));
+        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG, Place.Field.ADDRESS));
 
-     autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener(){
-         @Override
-         public void onPlaceSelected(Place place){
-             final LatLng latLng = place.getLatLng();
-            // mMap.addMarker(new MarkerOptions().position(place.getLatLng()));
-             //  mMap.addMarker(markerOptions);
-             mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
-             if(latLng != null) {
-                 // TODO: Get info about the selected place.
-                 Log.i("placeApi", "Place: " + place.getName() + ", " + place.getId());
-                 // Toast.makeText(CustomerRegisterActivity.this, "" + place.getName()+","+place.getId()+","+place.getLatLng(), Toast.LENGTH_SHORT).show();
-                 loc_latitude.setText(""+latLng.latitude);
-                loc_longitude.setText(""+latLng.longitude);
-                 active_location.setText(place.getName());
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+                final LatLng latLng = place.getLatLng();
+                // mMap.addMarker(new MarkerOptions().position(place.getLatLng()));
+                //  mMap.addMarker(markerOptions);
+                mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+                if (latLng != null) {
+                    // TODO: Get info about the selected place.
+                    Log.i("placeApi", "Place: " + place.getName() + ", " + place.getId());
+                    // Toast.makeText(CustomerRegisterActivity.this, "" + place.getName()+","+place.getId()+","+place.getLatLng(), Toast.LENGTH_SHORT).show();
+                    lat.setText("" + latLng.latitude);
+                    lon.setText("" + latLng.longitude);
+                    active_location.setText(place.getName());
 
-             }
-         }
+                }
+            }
 
-         @Override
-         public void onError(Status status){
-             // TODO: Handle the error.
-             Log.i("placeApi","An error occurred: "+status);
-         }
-     });
+            @Override
+            public void onError(Status status) {
+                // TODO: Handle the error.
+                Log.i("placeApi", "An error occurred: " + status);
+            }
+        });
 
- }
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode)
-        {
+        switch (requestCode) {
             case REQUEST_CODE:
-                if(grantResults.length>0 && grantResults[0]== PackageManager.PERMISSION_GRANTED)
-                {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     fetchLastLocation();
                     configureCameraIdle();
 
@@ -258,61 +273,72 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     //For Autocomplete Fragment//
-    private void RegisterLocWithVolley(){
+   /* private void RegisterLocWithVolley() {
 
-        final String loc_latitude =this.loc_latitude.getText().toString();
-        final String loc_longitude = this.loc_longitude.getText().toString();
-        final String activelocation= this.active_location.getText().toString();
+        final String lat = this.lat.getText().toString();
+        final String lon = this.lon.getText().toString();
+        final String activelocation = this.active_location.getText().toString();
+        final String cusname = this.cusname.getText().toString();
+        final String cuscontact = this.cuscontact.getText().toString();
 
 
-        StringRequest request = new StringRequest(Request.Method.POST,update_url , new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.PUT, update_url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
                     Log.d("Success", response.toString());
                     VolleyLog.v("Response:%n %s", response.toString());
-                    Toast.makeText(MapsActivity.this,response,Toast.LENGTH_LONG).show();
-                    Toast.makeText(MapsActivity.this,response.toString(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(MapsActivity.this, response, Toast.LENGTH_LONG).show();
+                    Toast.makeText(MapsActivity.this, response.toString(), Toast.LENGTH_LONG).show();
 
                     parseData(response);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Log.i("checkresponse", "onResponse: "+response);
+                Log.i("checkresponse", "onResponse: " + response);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.e("Error: ", error.getMessage());
-                Toast.makeText(MapsActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                Toast.makeText(MapsActivity.this, error.toString(), Toast.LENGTH_LONG).show();
                 Log.e("checkerror", "onErrorResponse: " + error.getMessage());
             }
         }) {
             @Override
-            protected Map<String,String> getParams(){
-                Map<String,String> params = new HashMap<String, String>();
-                params.put("active_location",activelocation);
-                params.put("loc_latitude", loc_latitude);
-                params.put("loc_longitude",loc_longitude);
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+
+                params.put("lat", "23.456");
+                params.put("lon", "9898.989");
+                params.put("name", "Testing");
+                params.put("contact", "23232323");
+                params.put("language", "en");
+                params.put("address", "addresssss");
+
                 return params;
             }
+
             @Override
             public String getBodyContentType() {
                 return "application/json; charset=utf-8";
             }
+
             @Override
             public byte[] getBody() throws AuthFailureError {
                 return getLoginData().toString().getBytes();
             }
+
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 //Map<String, String> params = new HashMap<String, String>();
                 Map<String, String> headers = new HashMap<>();
                 String authid = (String) SharedPref.getUSER_auth(MapsActivity.this);
                 headers.put("Content-Type", "application/x-www-form-urlencoded");
-                headers.put("access_token", authid);
-                headers.put("Authorization", "Bearer "+authid);
+                headers.put("Accept", "application/json");
+//                headers.put("access_token", authid);
+                headers.put("Authorization", "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImU2YjljZjA2YzAyNTFhZjg0NWVjZjM0YjcwYzQwMDYzYTEzNTdmNzZmZGI0NzQ5ZDI4ZDZkM2E3ZTk0NzE3ODI4MzI2NjU2ZTBkYzE1NjBjIn0.eyJhdWQiOiIyIiwianRpIjoiZTZiOWNmMDZjMDI1MWFmODQ1ZWNmMzRiNzBjNDAwNjNhMTM1N2Y3NmZkYjQ3NDlkMjhkNmQzYTdlOTQ3MTc4MjgzMjY2NTZlMGRjMTU2MGMiLCJpYXQiOjE1NzI0NDE1MzYsIm5iZiI6MTU3MjQ0MTUzNiwiZXhwIjoxNjA0MDYzOTM2LCJzdWIiOiI2Iiwic2NvcGVzIjpbXX0.dFXDZPrr25ogHlxtTmIXaNBIQTvBd7YeJMo-yEYq2dc5aWGKE1QBfvtn-bp8vIdi677_WUV6CkFMfmpczv1AEyfKosJDpyAGWr_2OHoUbwb1gg1Cuw7_ByCiPvlJg8KC8G1qVslKhsLWhO2LWPMyKr4-NKl3UCv7zVg6sxWrHrltrHtfVsYwfUYPuO6LlGzpiYVeAKO9tchD4u8WpxNlzg4vw96pwwvriTtQOl0wgj7u2m6Doiol43UXafa9MCMieIblKAl9U0kTjsYH9ulU_dKCLb_RTvIgUXwicXsGniEr_XLrQVnmWfRfKSw0oC0dYmINuJyGDhX8cZC9X67N-wFBUohQqa9D4X1nWYg86cTfvSRTXGvndbUHHIQxYdWFKeIHXiyX2yhCI1nIzy5ba4htm9foQtey8L31BfZeHkCEOQ6iHlRAh5TTwxzQw518lESM1jUTAyg3_fSrYjqKSMItcPHWxXHsFp2VDDWGr0d_7dRoI7tbQi3lcst5eP1k9mzrT0Q7i-tWLje_STxOspV2hQQ8ufYGFxaQs2-s6zaK6JOmDdrhGXDL_Jjj-MpmJq51UQqg6LwzGms2x6nEsPePEQr9OSecCJM8-M-Rx4pExr1t9Bmm0qsdrcMlr5Vd_D4kufIh1Qk2ndZXcwpqXGAQRQqXOOYMWUsaU3LyxsI");
                 return headers;
             }
 
@@ -321,14 +347,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         VolleySingleton.getInstance(this).addToRequestQueue(request);
     }
 
-
     private JSONObject getLoginData() {
         JSONObject data = new JSONObject();
         try {
 
-            data.putOpt("active_location", active_location.getText().toString());
-            data.putOpt("loc_latitude", loc_latitude.getText().toString());
-            data.putOpt("loc_longitude", loc_longitude.getText().toString());
+            data.putOpt("language", "en");
+            data.putOpt("lat", "23.456");
+            data.putOpt("lon", "9898.989");
+            data.putOpt("name", "Testing");
+            data.putOpt("contact", "23232323");
+            data.putOpt("address", "addresssss");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -338,21 +366,85 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void parseData(String response) throws JSONException {
 
         JSONObject jsonObject = new JSONObject(response);
-        if (jsonObject.optString("status").equals("success")){
+        if (jsonObject.optString("status").equals("success")) {
             Toast.makeText(MapsActivity.this, "Registered Successfully!", Toast.LENGTH_SHORT).show();
             String auth = jsonObject.optJSONObject("data").optString("auth_token");
 
             if (!auth.isEmpty()) {
-                SharedPref.SaveUSER_auth(auth,MapsActivity.this);
+                SharedPref.SaveUSER_auth(auth, MapsActivity.this);
             }
-            Intent intent = new Intent(MapsActivity.this,MainActivity.class);
+            Intent intent = new Intent(MapsActivity.this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             this.finish();
-        }else {
+        } else {
 
             Toast.makeText(MapsActivity.this, jsonObject.getString("success"), Toast.LENGTH_SHORT).show();
         }
-    }
+    }*/
 
+
+    private void sendRequest() {
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        final JSONObject data = new JSONObject();
+        try {
+
+            data.putOpt("language", "en");
+            data.putOpt("lat", 23.456);
+            data.putOpt("lon", 9898.989);
+            data.putOpt("name", "Testing");
+            data.putOpt("contact", "23232323");
+            data.putOpt("address", "addresssss");
+
+        } catch (JSONException e) {
+            // handle exception
+        }
+
+
+        JsonObjectRequest putRequest = new JsonObjectRequest(Request.Method.PUT, update_url, data,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // response
+                        Log.d("Response", response.toString());
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                    }
+                }
+        ) {
+
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<String, String>();
+
+                headers.put("Content-Type", "application/x-www-form-urlencoded");
+               // headers.put("Accept", "application/json");
+//                headers.put("access_token", authid);
+                headers.put("Authorization", "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImU2YjljZjA2YzAyNTFhZjg0NWVjZjM0YjcwYzQwMDYzYTEzNTdmNzZmZGI0NzQ5ZDI4ZDZkM2E3ZTk0NzE3ODI4MzI2NjU2ZTBkYzE1NjBjIn0.eyJhdWQiOiIyIiwianRpIjoiZTZiOWNmMDZjMDI1MWFmODQ1ZWNmMzRiNzBjNDAwNjNhMTM1N2Y3NmZkYjQ3NDlkMjhkNmQzYTdlOTQ3MTc4MjgzMjY2NTZlMGRjMTU2MGMiLCJpYXQiOjE1NzI0NDE1MzYsIm5iZiI6MTU3MjQ0MTUzNiwiZXhwIjoxNjA0MDYzOTM2LCJzdWIiOiI2Iiwic2NvcGVzIjpbXX0.dFXDZPrr25ogHlxtTmIXaNBIQTvBd7YeJMo-yEYq2dc5aWGKE1QBfvtn-bp8vIdi677_WUV6CkFMfmpczv1AEyfKosJDpyAGWr_2OHoUbwb1gg1Cuw7_ByCiPvlJg8KC8G1qVslKhsLWhO2LWPMyKr4-NKl3UCv7zVg6sxWrHrltrHtfVsYwfUYPuO6LlGzpiYVeAKO9tchD4u8WpxNlzg4vw96pwwvriTtQOl0wgj7u2m6Doiol43UXafa9MCMieIblKAl9U0kTjsYH9ulU_dKCLb_RTvIgUXwicXsGniEr_XLrQVnmWfRfKSw0oC0dYmINuJyGDhX8cZC9X67N-wFBUohQqa9D4X1nWYg86cTfvSRTXGvndbUHHIQxYdWFKeIHXiyX2yhCI1nIzy5ba4htm9foQtey8L31BfZeHkCEOQ6iHlRAh5TTwxzQw518lESM1jUTAyg3_fSrYjqKSMItcPHWxXHsFp2VDDWGr0d_7dRoI7tbQi3lcst5eP1k9mzrT0Q7i-tWLje_STxOspV2hQQ8ufYGFxaQs2-s6zaK6JOmDdrhGXDL_Jjj-MpmJq51UQqg6LwzGms2x6nEsPePEQr9OSecCJM8-M-Rx4pExr1t9Bmm0qsdrcMlr5Vd_D4kufIh1Qk2ndZXcwpqXGAQRQqXOOYMWUsaU3LyxsI");
+                return headers;
+
+            }
+
+            @Override
+            public byte[] getBody() {
+
+                try {
+                    Log.i("json", data.toString());
+                    return data.toString().getBytes("UTF-8");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+        };
+
+        queue.add(putRequest);
+
+    }
 }
