@@ -316,7 +316,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 params.put("contact", "23232323");
                 params.put("language", "en");
                 params.put("address", "addresssss");
-
                 return params;
             }
 
@@ -383,68 +382,4 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-
-   /* private void sendRequest() {
-        RequestQueue queue = Volley.newRequestQueue(this);
-
-        final JSONObject data = new JSONObject();
-        try {
-
-            data.putOpt("language", "en");
-            data.putOpt("lat", 23.456);
-            data.putOpt("lon", 9898.989);
-            data.putOpt("name", "Testing");
-            data.putOpt("contact", "23232323");
-            data.putOpt("address", "addresssss");
-
-        } catch (JSONException e) {
-            // handle exception
-        }
-
-
-        JsonObjectRequest putRequest = new JsonObjectRequest(Request.Method.PUT, update_url, data,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        // response
-                        Log.d("Response", response.toString());
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // error
-                        Log.d("Error.Response", error.toString());
-                    }
-                }
-        ) {
-
-            @Override
-            public Map<String, String> getHeaders() {
-                Map<String, String> headers = new HashMap<String, String>();
-
-                headers.put("Content-Type", "application/x-www-form-urlencoded");
-               // headers.put("Accept", "application/json");
-//                headers.put("access_token", authid);
-                headers.put("Authorization", "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImU2YjljZjA2YzAyNTFhZjg0NWVjZjM0YjcwYzQwMDYzYTEzNTdmNzZmZGI0NzQ5ZDI4ZDZkM2E3ZTk0NzE3ODI4MzI2NjU2ZTBkYzE1NjBjIn0.eyJhdWQiOiIyIiwianRpIjoiZTZiOWNmMDZjMDI1MWFmODQ1ZWNmMzRiNzBjNDAwNjNhMTM1N2Y3NmZkYjQ3NDlkMjhkNmQzYTdlOTQ3MTc4MjgzMjY2NTZlMGRjMTU2MGMiLCJpYXQiOjE1NzI0NDE1MzYsIm5iZiI6MTU3MjQ0MTUzNiwiZXhwIjoxNjA0MDYzOTM2LCJzdWIiOiI2Iiwic2NvcGVzIjpbXX0.dFXDZPrr25ogHlxtTmIXaNBIQTvBd7YeJMo-yEYq2dc5aWGKE1QBfvtn-bp8vIdi677_WUV6CkFMfmpczv1AEyfKosJDpyAGWr_2OHoUbwb1gg1Cuw7_ByCiPvlJg8KC8G1qVslKhsLWhO2LWPMyKr4-NKl3UCv7zVg6sxWrHrltrHtfVsYwfUYPuO6LlGzpiYVeAKO9tchD4u8WpxNlzg4vw96pwwvriTtQOl0wgj7u2m6Doiol43UXafa9MCMieIblKAl9U0kTjsYH9ulU_dKCLb_RTvIgUXwicXsGniEr_XLrQVnmWfRfKSw0oC0dYmINuJyGDhX8cZC9X67N-wFBUohQqa9D4X1nWYg86cTfvSRTXGvndbUHHIQxYdWFKeIHXiyX2yhCI1nIzy5ba4htm9foQtey8L31BfZeHkCEOQ6iHlRAh5TTwxzQw518lESM1jUTAyg3_fSrYjqKSMItcPHWxXHsFp2VDDWGr0d_7dRoI7tbQi3lcst5eP1k9mzrT0Q7i-tWLje_STxOspV2hQQ8ufYGFxaQs2-s6zaK6JOmDdrhGXDL_Jjj-MpmJq51UQqg6LwzGms2x6nEsPePEQr9OSecCJM8-M-Rx4pExr1t9Bmm0qsdrcMlr5Vd_D4kufIh1Qk2ndZXcwpqXGAQRQqXOOYMWUsaU3LyxsI");
-                return headers;
-
-            }
-
-            @Override
-            public byte[] getBody() {
-
-                try {
-                    Log.i("json", data.toString());
-                    return data.toString().getBytes("UTF-8");
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
-        };
-
-        queue.add(putRequest);
-
-    }*/
 }

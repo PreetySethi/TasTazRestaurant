@@ -56,13 +56,13 @@ import java.util.Map;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        SharedPreferences.Editor editor = pref.edit();
+
         /*    For showing the name in other activty*/
                             pref = getSharedPreferences("Registration", 0);
                             // get editor to edit in file
                             editor = pref.edit();
 
-
+                            SharedPreferences.Editor editor = pref.edit();
                             editor.commit();
         /*    For showing the name in other activty*/
 
