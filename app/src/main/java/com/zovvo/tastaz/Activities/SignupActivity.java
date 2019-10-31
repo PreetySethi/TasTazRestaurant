@@ -56,13 +56,13 @@ import java.util.Map;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-
+        SharedPreferences.Editor editor = pref.edit();
         /*    For showing the name in other activty*/
                             pref = getSharedPreferences("Registration", 0);
                             // get editor to edit in file
                             editor = pref.edit();
 
-                            SharedPreferences.Editor editor = pref.edit();
+
                             editor.commit();
         /*    For showing the name in other activty*/
 
@@ -390,8 +390,6 @@ import java.util.Map;
                    headers.put("Content-Type", "application/json");
                    headers.put("access_token", authid);
                    return headers;
-                   // params.put("auth_token", "ffcd450a68d036f67ca7f71cced6b4e7");
-                   // return params;
                }
 
            };

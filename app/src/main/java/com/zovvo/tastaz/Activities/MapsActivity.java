@@ -123,7 +123,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
 
-                sendRequest();
+                RegisterLocWithVolley();
             }
         });
 
@@ -273,7 +273,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     //For Autocomplete Fragment//
-   /* private void RegisterLocWithVolley() {
+    private void RegisterLocWithVolley() {
 
         final String lat = this.lat.getText().toString();
         final String lon = this.lon.getText().toString();
@@ -311,7 +311,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Map<String, String> params = new HashMap<String, String>();
 
                 params.put("lat", "23.456");
-                params.put("lon", "9898.989");
+                params.put("lon", "98.98989");
                 params.put("name", "Testing");
                 params.put("contact", "23232323");
                 params.put("language", "en");
@@ -335,7 +335,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 //Map<String, String> params = new HashMap<String, String>();
                 Map<String, String> headers = new HashMap<>();
                 String authid = (String) SharedPref.getUSER_auth(MapsActivity.this);
-                headers.put("Content-Type", "application/x-www-form-urlencoded");
+               // headers.put("Content-Type", "application/x-www-form-urlencoded");
                 headers.put("Accept", "application/json");
 //                headers.put("access_token", authid);
                 headers.put("Authorization", "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImU2YjljZjA2YzAyNTFhZjg0NWVjZjM0YjcwYzQwMDYzYTEzNTdmNzZmZGI0NzQ5ZDI4ZDZkM2E3ZTk0NzE3ODI4MzI2NjU2ZTBkYzE1NjBjIn0.eyJhdWQiOiIyIiwianRpIjoiZTZiOWNmMDZjMDI1MWFmODQ1ZWNmMzRiNzBjNDAwNjNhMTM1N2Y3NmZkYjQ3NDlkMjhkNmQzYTdlOTQ3MTc4MjgzMjY2NTZlMGRjMTU2MGMiLCJpYXQiOjE1NzI0NDE1MzYsIm5iZiI6MTU3MjQ0MTUzNiwiZXhwIjoxNjA0MDYzOTM2LCJzdWIiOiI2Iiwic2NvcGVzIjpbXX0.dFXDZPrr25ogHlxtTmIXaNBIQTvBd7YeJMo-yEYq2dc5aWGKE1QBfvtn-bp8vIdi677_WUV6CkFMfmpczv1AEyfKosJDpyAGWr_2OHoUbwb1gg1Cuw7_ByCiPvlJg8KC8G1qVslKhsLWhO2LWPMyKr4-NKl3UCv7zVg6sxWrHrltrHtfVsYwfUYPuO6LlGzpiYVeAKO9tchD4u8WpxNlzg4vw96pwwvriTtQOl0wgj7u2m6Doiol43UXafa9MCMieIblKAl9U0kTjsYH9ulU_dKCLb_RTvIgUXwicXsGniEr_XLrQVnmWfRfKSw0oC0dYmINuJyGDhX8cZC9X67N-wFBUohQqa9D4X1nWYg86cTfvSRTXGvndbUHHIQxYdWFKeIHXiyX2yhCI1nIzy5ba4htm9foQtey8L31BfZeHkCEOQ6iHlRAh5TTwxzQw518lESM1jUTAyg3_fSrYjqKSMItcPHWxXHsFp2VDDWGr0d_7dRoI7tbQi3lcst5eP1k9mzrT0Q7i-tWLje_STxOspV2hQQ8ufYGFxaQs2-s6zaK6JOmDdrhGXDL_Jjj-MpmJq51UQqg6LwzGms2x6nEsPePEQr9OSecCJM8-M-Rx4pExr1t9Bmm0qsdrcMlr5Vd_D4kufIh1Qk2ndZXcwpqXGAQRQqXOOYMWUsaU3LyxsI");
@@ -352,8 +352,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         try {
 
             data.putOpt("language", "en");
-            data.putOpt("lat", "23.456");
-            data.putOpt("lon", "9898.989");
+            data.putOpt("lat", 23.456);
+            data.putOpt("lon", 98.989);
             data.putOpt("name", "Testing");
             data.putOpt("contact", "23232323");
             data.putOpt("address", "addresssss");
@@ -366,13 +366,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void parseData(String response) throws JSONException {
 
         JSONObject jsonObject = new JSONObject(response);
-        if (jsonObject.optString("status").equals("success")) {
+        if (jsonObject.optString("status").equals("true")) {
             Toast.makeText(MapsActivity.this, "Registered Successfully!", Toast.LENGTH_SHORT).show();
-            String auth = jsonObject.optJSONObject("data").optString("auth_token");
+           /* String auth = jsonObject.optJSONObject("data").optString("auth_token");
 
             if (!auth.isEmpty()) {
                 SharedPref.SaveUSER_auth(auth, MapsActivity.this);
-            }
+            }*/
             Intent intent = new Intent(MapsActivity.this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
@@ -381,10 +381,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             Toast.makeText(MapsActivity.this, jsonObject.getString("success"), Toast.LENGTH_SHORT).show();
         }
-    }*/
+    }
 
 
-    private void sendRequest() {
+   /* private void sendRequest() {
         RequestQueue queue = Volley.newRequestQueue(this);
 
         final JSONObject data = new JSONObject();
@@ -446,5 +446,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         queue.add(putRequest);
 
-    }
+    }*/
 }
