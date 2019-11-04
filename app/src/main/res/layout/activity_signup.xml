@@ -91,6 +91,7 @@
                                 android:layout_height="match_parent"
                                 android:drawablePadding="16dp"
                                 android:hint="Mobile | +974"
+                                android:maxLength="8"
                                 android:textStyle="bold"
                                 android:textColorHint="@color/colorwhite"
                                 android:inputType="number"

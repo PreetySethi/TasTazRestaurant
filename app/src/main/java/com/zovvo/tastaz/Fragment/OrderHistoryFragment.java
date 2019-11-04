@@ -8,9 +8,13 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 
 import com.zovvo.tastaz.Adapter.HistoryAdapter;
 import com.zovvo.tastaz.R;
@@ -19,6 +23,9 @@ import com.zovvo.tastaz.Model.History;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.Inflater;
+
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -74,4 +81,6 @@ public class OrderHistoryFragment extends Fragment {
         history = new History("Order ID: Or-45645335","Date : 52/02/2019");
         historyList.add(history);
     }
+
+
 }

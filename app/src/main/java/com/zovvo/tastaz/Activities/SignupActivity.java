@@ -57,6 +57,8 @@ import java.util.Map;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
+                 /*Shared Preference with storing and showing data*/
+
         /*    For showing the name in other activty*/
                             pref = getSharedPreferences("Registration", 0);
                             // get editor to edit in file

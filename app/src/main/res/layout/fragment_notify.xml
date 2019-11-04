@@ -3,17 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgroundlogin"
     tools:context=".Fragment.NotifyFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:layout_centerInParent="true"
-        android:text="NOTIFY"
-        android:textSize="30sp" />
+        android:layout_marginTop="10dp"
+        android:text="Order History "
+        android:textColor="@color/colorblue"
+        />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lv"
+        android:layout_marginTop="10dp">
+    </ListView>
 
 </FrameLayout>

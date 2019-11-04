@@ -7,7 +7,7 @@
     <color name="colorwhite">#FFFFFF</color>
     <color name="colorwhitelight">#F8F8F8</color>
     <color name="colorblue">#1B9CC3</color>
-    <color name="colorgrey">#A5A5A3</color>
+    <color name="colorgrey">#C3C4C9</color>
     <color name="colorgeydark">#C3C4C9</color>
     <color name="textInputLayout">#96ffffff</color>
 </resources>
