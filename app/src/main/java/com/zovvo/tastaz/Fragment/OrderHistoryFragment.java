@@ -1,6 +1,7 @@
 package com.zovvo.tastaz.Fragment;
 
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.zovvo.tastaz.Adapter.HistoryAdapter;
 import com.zovvo.tastaz.R;
@@ -50,6 +52,10 @@ public class OrderHistoryFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_order_history, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.rview_historyorder);
         hAdapter = new HistoryAdapter(historyList, getContext());
+
+        TextView name = (TextView) view.findViewById(R.id.title_history);
+        Typeface pick_text = Typeface.createFromAsset(getContext().getAssets(),  "fonts/NevisBold-KGwl.ttf");
+        name.setTypeface(pick_text);
 
 
         // Create grids with 2 items in a row

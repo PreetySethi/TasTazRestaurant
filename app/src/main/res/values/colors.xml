@@ -10,4 +10,5 @@
     <color name="colorgrey">#C3C4C9</color>
     <color name="colorgeydark">#C3C4C9</color>
     <color name="textInputLayout">#96ffffff</color>
+    <color name="colorblack">#2A2A2C</color>
 </resources>

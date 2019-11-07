@@ -1,6 +1,8 @@
 package com.zovvo.tastaz.Fragment;
 
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -18,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.zovvo.tastaz.Adapter.NotifyAdapter;
+import com.zovvo.tastaz.Model.DataModel;
 import com.zovvo.tastaz.R;
 
 import org.json.JSONArray;
@@ -30,6 +34,11 @@ import java.util.ArrayList;
  * A simple {@link Fragment} subclass.
  */
 public class NotifyFragment extends Fragment {
+    private String URLstring = "https://demonuts.com/Demonuts/JsonTest/Tennis/json_parsing.php";
+    private static ProgressDialog mProgressDialog;
+    private ListView listView;
+    ArrayList<DataModel> dataModelArrayList;
+    private NotifyAdapter listAdapter;
 
 
     public NotifyFragment() {
@@ -40,74 +49,117 @@ public class NotifyFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notify, container, false);
 
+        View view = inflater.inflate(R.layout.fragment_notify, container, false);
+        listView = view.findViewById(R.id.lv);
 
+       // retrieveJSON();
+        return view;
 
-        private void retrieveJSON() {
+    }
 
-            showSimpleProgressDialog(this, "Loading...","Fetching Json",false);
+   /* private void retrieveJSON() {
 
-            StringRequest stringRequest = new StringRequest(Request.Method.GET, URLstring,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
+        showSimpleProgressDialog(getContext(), "Loading...","Fetching Json",false);
 
-                            Log.d("strrrrr", ">>" + response);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URLstring,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
 
-                            try {
+                        Log.d("strrrrr", ">>" + response);
 
-                                JSONObject obj = new JSONObject(response);
-                                if(obj.optString("status").equals("true")){
+                        try {
 
-                                    dataModelArrayList = new ArrayList<>();
-                                    JSONArray dataArray  = obj.getJSONArray("data");
+                            JSONObject obj = new JSONObject(response);
+                            if(obj.optString("status").equals("true")){
 
-                                    for (int i = 0; i < dataArray.length(); i++) {
+                                dataModelArrayList = new ArrayList<>();
+                                JSONArray dataArray  = obj.getJSONArray("data");
 
-                                        DataModel playerModel = new DataModel();
-                                        JSONObject dataobj = dataArray.getJSONObject(i);
+                                for (int i = 0; i < dataArray.length(); i++) {
 
-                                        playerModel.setName(dataobj.getString("name"));
-                                        playerModel.setCountry(dataobj.getString("country"));
-                                        playerModel.setCity(dataobj.getString("city"));
-                                        //  playerModel.setImgURL(dataobj.getString("imgURL"));
+                                    DataModel playerModel = new DataModel();
+                                    JSONObject dataobj = dataArray.getJSONObject(i);
 
-                                        dataModelArrayList.add(playerModel);
+                                    playerModel.setName(dataobj.getString("name"));
+                                    playerModel.setCountry(dataobj.getString("country"));
+                                    playerModel.setCity(dataobj.getString("city"));
+                                    //  playerModel.setImgURL(dataobj.getString("imgURL"));
 
-                                    }
-
-                                    setupListview();
+                                    dataModelArrayList.add(playerModel);
 
                                 }
 
-                            } catch (JSONException e) {
-                                e.printStackTrace();
+                                setupListview();
+
                             }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            //displaying the error in toast if occurrs
-                            Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //displaying the error in toast if occurrs
+                        Toast.makeText(getActivity().getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
 
-            // request queue
-            RequestQueue requestQueue = Volley.newRequestQueue(this);
+        // request queue
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
 
-            requestQueue.add(stringRequest);
+        requestQueue.add(stringRequest);
 
 
-        }
-
-        private void setupListview(){
-            removeSimpleProgressDialog();  //will remove progress dialog
-            listAdapter = new NotifyAdapter(this, dataModelArrayList);
-            listView.setAdapter(listAdapter);
-        }
     }
+
+    private void setupListview(){
+        removeSimpleProgressDialog();  //will remove progress dialog
+        listAdapter = new NotifyAdapter(getContext(), dataModelArrayList);
+        listView.setAdapter(listAdapter);
+    }
+
+    public static void removeSimpleProgressDialog() {
+        try {
+            if (mProgressDialog != null) {
+                if (mProgressDialog.isShowing()) {
+                    mProgressDialog.dismiss();
+                    mProgressDialog = null;
+                }
+            }
+        } catch (IllegalArgumentException ie) {
+            ie.printStackTrace();
+
+        } catch (RuntimeException re) {
+            re.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void showSimpleProgressDialog(Context context, String title,
+                                                String msg, boolean isCancelable) {
+        try {
+            if (mProgressDialog == null) {
+                mProgressDialog = ProgressDialog.show(context, title, msg);
+                mProgressDialog.setCancelable(isCancelable);
+            }
+
+            if (!mProgressDialog.isShowing()) {
+                mProgressDialog.show();
+            }
+
+        } catch (IllegalArgumentException ie) {
+            ie.printStackTrace();
+        } catch (RuntimeException re) {
+            re.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }*/
 
 }

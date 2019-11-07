@@ -10,14 +10,33 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.wds.Model.DataModel;
-import com.example.wds.R;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.zovvo.tastaz.Model.DataModel;
+import com.zovvo.tastaz.R;
 
 import java.util.ArrayList;
 
-public class NotifyAdapter extends BaseAdapter {
 
-    private Context context;
+public class NotifyAdapter extends RecyclerView.Adapter<MenuAdapter.CustomViewHolder> {
+    @NonNull
+    @Override
+    public MenuAdapter.CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return null;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull MenuAdapter.CustomViewHolder holder, int position) {
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return 0;
+    }
+
+   /* private Context context;
     private ArrayList<DataModel> dataModelArrayList;
 
     public NotifyAdapter(Context context, ArrayList<DataModel> dataModelArrayList) {
@@ -59,7 +78,7 @@ public class NotifyAdapter extends BaseAdapter {
             holder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.lv_player, null, true);
+            convertView = inflater.inflate(R.layout.notify_view, null, true);
 
            // holder.iv = (ImageView) convertView.findViewById(R.id.iv);
             holder.tvname = (TextView) convertView.findViewById(R.id.name);
@@ -84,35 +103,7 @@ public class NotifyAdapter extends BaseAdapter {
 
         protected TextView tvname, tvcountry, tvcity;
         protected ImageView iv;
-    }
-    private void Color(TextView tv, int position) {
+    }*/
 
-        int mod = position % 3;
 
-        switch (mod) {
-            case 0:
-                GradientColor(tv, GetColor(R.color.list_color_1), GetColor(R.color.list_color_1a));
-                break;
-            case 1:
-                GradientColor(tv, GetColor(R.color.list_color_2), GetColor(R.color.list_color_2a));
-                break;
-            case 2:
-                GradientColor(tv, GetColor(R.color.list_color_3), GetColor(R.color.list_color_3a));
-
-                break;
-            default:
-                break;
-        }
-    }
-
-    private void GradientColor(TextView tv, int color1, int color2) {
-        Shader shader = new LinearGradient(
-                0, 0, 0, tv.getTextSize(),
-                color1, color2, Shader.TileMode.CLAMP);
-        tv.getPaint().setShader(shader);
-    }
-
-    private int GetColor(int id) {
-        return context.getResources().getColor(id);
-    }
 }

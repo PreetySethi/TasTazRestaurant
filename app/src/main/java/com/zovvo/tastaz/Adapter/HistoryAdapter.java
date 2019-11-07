@@ -38,7 +38,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.CustomVi
                 .inflate(R.layout.orderhistory_cardview, parent, false);
 
         TextView name = (TextView) itemView.findViewById(R.id.tv_date);
-        Typeface pick_text = Typeface.createFromAsset(itemView.getContext().getAssets(),  "fonts/NevisBold-KGwl.ttf");
+        Typeface pick_text = Typeface.createFromAsset(itemView.getContext().getAssets(),  "fonts/OpenSans-Semibold.ttf");
         name.setTypeface(pick_text);
 
         TextView desc = (TextView) itemView.findViewById(R.id.tv_orderid);
@@ -100,8 +100,8 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.CustomVi
     @Override
     public void onBindViewHolder(final HistoryAdapter.CustomViewHolder holder, int position) {
         History pizza = historyList.get(position);
-        holder.date.setText(pizza.getOrderid());
-        holder.oid.setText(pizza.getDate());
+        holder.oid.setText(pizza.getOrderid());
+        holder.date.setText(pizza.getDate());
     }
 
 
@@ -111,7 +111,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.CustomVi
     }
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
-        public TextView date, oid;
+        public TextView oid,date ;
 
         public CustomViewHolder(View itemView) {
             super(itemView);
