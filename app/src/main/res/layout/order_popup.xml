@@ -46,13 +46,14 @@
                             android:layout_height="wrap_content">
 
                             <TextView
-                                android:id="@+id/txpizzaName"
+                                android:id="@+id/txproductName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Chicken lolipop"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
                             <TextView
+                                android:id="@+id/desc"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="2 pieces"
@@ -73,7 +74,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/pizzaName"
+                        android:id="@+id/txt_orderid"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
@@ -90,7 +91,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/pizzaDesc"
+                    android:id="@+id/or_date"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="Date"
@@ -100,7 +101,7 @@
 
 
                 <TextView
-                    android:id="@+id/Price"
+                    android:id="@+id/or_deliver"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Delivered "
@@ -109,7 +110,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/pizzaPrice"
+                    android:id="@+id/or_payment"
                     android:layout_width="108dp"
                     android:layout_height="wrap_content"
                     android:text="payment"

@@ -1,7 +1,23 @@
 package com.zovvo.tastaz.Model;
 
 public class historypopup {
-    private String orderid, date, time, deliveredby, payment;
+    private String name,orderid, date, time, deliveredby, payment, image;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getOrderid() {
         return orderid;

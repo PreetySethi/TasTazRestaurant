@@ -88,5 +88,10 @@ public class OrderHistoryFragment extends Fragment {
         historyList.add(history);
     }
 
+     private void populateHistoryDetails()
+     {
+         //historypo
+     }
+
 
 }

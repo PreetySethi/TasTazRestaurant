@@ -104,7 +104,6 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.CustomVi
         holder.date.setText(pizza.getDate());
     }
 
-
     @Override
     public int getItemCount() {
         return historyList.size();
