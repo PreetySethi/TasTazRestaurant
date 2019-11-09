@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.zovvo.tastaz.Model.historypopup;
+import com.zovvo.tastaz.Model.OrderPopup;
 import com.zovvo.tastaz.R;
 
 import java.util.List;
@@ -17,10 +17,10 @@ import java.util.List;
 
 public class historypopupAdapter extends RecyclerView.Adapter<historypopupAdapter.CustomViewHolder> {
 
-    private List<historypopup> historypopups;
+    private List<OrderPopup> historypopups;
     private Context mContext;
 
-    public historypopupAdapter(List<historypopup> history, Context mContext ){
+    public historypopupAdapter(List<OrderPopup> history, Context mContext ){
         this.mContext = mContext;
         this.historypopups = history;
     }
@@ -31,6 +31,29 @@ public class historypopupAdapter extends RecyclerView.Adapter<historypopupAdapte
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.order_popup, parent, false);
 
+        TextView name = (TextView) itemView.findViewById(R.id.txproductName);
+        Typeface pick_text = Typeface.createFromAsset(itemView.getContext().getAssets(),  "fonts/NevisBold-KGwl.ttf");
+        name.setTypeface(pick_text);
+
+        TextView desc = (TextView) itemView.findViewById(R.id.or_deliver);
+        Typeface desc_text = Typeface.createFromAsset(itemView.getContext().getAssets(),  "fonts/OpenSans-Semibold.ttf");
+        desc.setTypeface(desc_text);
+
+        TextView view = (TextView) itemView.findViewById(R.id.or_date);
+        Typeface view_text = Typeface.createFromAsset(itemView.getContext().getAssets(),  "fonts/OpenSans-Semibold.ttf");
+        view.setTypeface(view_text);
+
+
+        TextView pay = (TextView) itemView.findViewById(R.id.or_payment);
+        Typeface pay_text = Typeface.createFromAsset(itemView.getContext().getAssets(),  "fonts/OpenSans-Semibold.ttf");
+        pay.setTypeface(pay_text);
+
+        TextView order = (TextView) itemView.findViewById(R.id.txt_orderid);
+        Typeface order_text = Typeface.createFromAsset(itemView.getContext().getAssets(),  "fonts/NevisBold-KGwl.ttf");
+        order.setTypeface(order_text);
+
+
+
         return new historypopupAdapter.CustomViewHolder(itemView);
     }
 
@@ -39,7 +62,7 @@ public class historypopupAdapter extends RecyclerView.Adapter<historypopupAdapte
     @Override
     public void onBindViewHolder(final historypopupAdapter.CustomViewHolder holder, int position) {
 
-        historypopup history = historypopups.get(position);
+        OrderPopup history = historypopups.get(position);
         holder.name.setText(history.getName());
         holder.deliver.setText(history.getDeliveredby());
         holder.date.setText(history.getDate());

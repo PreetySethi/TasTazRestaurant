@@ -1,6 +1,6 @@
 package com.zovvo.tastaz.Model;
 
-public class historypopup {
+public class OrderPopup {
     private String name,orderid, date, time, deliveredby, payment, image;
 
     public String getImage() {
@@ -57,5 +57,15 @@ public class historypopup {
 
     public void setPayment(String payment) {
         this.payment = payment;
+    }
+
+    public OrderPopup(String name, String image, String orderid, String date,String time, String deliveredby, String payment ) {
+        this.name = name;
+        this.image = image;
+        this.orderid= orderid;
+        this.date = date;
+        this.time= time;
+        this.deliveredby= deliveredby;
+        this.payment= payment;
     }
 }

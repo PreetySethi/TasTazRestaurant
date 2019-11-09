@@ -46,13 +46,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         holder.productCartCode.setText(cartModelArrayList.get(position).getProductName());
         holder.productCartQuantity.setText(String.valueOf(cartModelArrayList.get(position).getProductQuantity()));
 
-        RequestOptions requestOptions = new RequestOptions();
+      /*  RequestOptions requestOptions = new RequestOptions();
         requestOptions.placeholder(R.drawable.foodone);
         requestOptions.error(R.drawable.foodone);
         Log.d("imageurl", String.valueOf(cartModelArrayList.get(position).getProductImage()));
         Glide.with(context)
                 .setDefaultRequestOptions(requestOptions)
-                .load(cartModelArrayList.get(position).getProductImage()).into(holder.productCartImage);
+                .load(cartModelArrayList.get(position).getProductImage()).into(holder.productCartImage);*/
 
         //for remove single item in cart and update the total value and list
         holder.deleteItem.setOnClickListener(new View.OnClickListener() {

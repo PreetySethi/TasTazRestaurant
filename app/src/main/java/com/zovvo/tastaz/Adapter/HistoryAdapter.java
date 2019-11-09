@@ -1,25 +1,26 @@
 package com.zovvo.tastaz.Adapter;
 
-import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.zovvo.tastaz.Activities.ViewOrderActivity;
 import com.zovvo.tastaz.R;
 import com.zovvo.tastaz.Model.History;
 
 import java.util.List;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.CustomViewHolder> {
 
@@ -53,7 +54,12 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.CustomVi
             @Override
             public void onClick(View v) {
                 //onButtonShowPopupWindowClick(view);
-                openDialog(view);
+               // openDialog(view);
+               // v.getContext().startActivity(ViewOrderActivity);
+
+                Intent myactivity = new Intent(mContext.getApplicationContext(), ViewOrderActivity.class);
+                myactivity.addFlags(FLAG_ACTIVITY_NEW_TASK);
+                mContext.getApplicationContext().startActivity(myactivity);
             }
         });
 
@@ -88,13 +94,13 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.CustomVi
     }
 
 
-    public void openDialog( View view) {
+   /* public void openDialog( View view) {
         final Dialog dialog = new Dialog(view.getContext()); // Context, this, etc.
         dialog.setContentView(R.layout.order_popup);
         dialog.setTitle("order");
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.show();
-    }
+    }*/
 
 
     @Override

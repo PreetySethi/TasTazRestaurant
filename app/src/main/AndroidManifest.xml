@@ -15,9 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeNo"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Activities.ViewOrderActivity"
+            android:theme="@style/Theme.AppCompat.Translucent">
+
+        </activity>
         <activity
             android:name=".Activities.CartActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MyLocationUsingHelper"
             android:label="MyLocation"
@@ -31,18 +35,14 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.LoginActivity"
-            android:screenOrientation="portrait" >
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".Activities.HomeActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.SplashActivity"
             android:noHistory="true"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".Activities.MainActivity"
             android:screenOrientation="portrait"

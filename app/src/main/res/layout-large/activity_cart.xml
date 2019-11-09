@@ -21,25 +21,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/colorblue">
+        android:background="@color/colorgrey">
         <TextView
+            android:id="@+id/carttotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Place Order"
+            android:text="Total"
             android:gravity="start"
             android:textColor="#fff"
             android:textStyle="bold"
             android:padding="10dp"
             android:textSize="24sp" />
-        <View
-            android:id="@+id/divider4"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_weight="1"
-            android:background="?android:attr/listDivider" />
 
         <TextView
             android:layout_marginLeft="5dp"
+            android:id="@+id/grand_total_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20"
+            android:padding="10dp"
+            android:textSize="24sp"
+            android:textColor="#fff"
+            android:textStyle="bold" />
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="QR"
@@ -49,18 +54,20 @@
             android:textStyle="bold"
             android:layout_marginRight="10dp"/>
 
-
+        <View
+            android:id="@+id/divider4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:background="?android:attr/listDivider" />
         <TextView
-            android:layout_marginLeft="5dp"
-            android:id="@+id/grand_total_cart"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:padding="10dp"
-            android:textSize="24sp"
-            android:textColor="#fff"
-            android:textStyle="bold"
-            android:layout_marginRight="10dp"/>
+            android:gravity="center"
+            android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp_white"
+            android:layout_height="wrap_content">
+
+        </TextView>
+
 
     </LinearLayout>
 

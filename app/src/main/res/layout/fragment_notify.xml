@@ -1,17 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorwhite"
     tools:context=".Fragment.NotifyFragment">
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Order History "
-        android:textColor="@color/colorblue"
-        />
+        android:orientation="vertical"
+        android:gravity="right"
+        android:layout_gravity="right"
+        android:layout_margin="20dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/title_history"
+            android:padding="2dp"
+            android:layout_marginRight="6dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorblue"
+            android:textSize="20sp"
+            android:text="Notifications">
+        </TextView>
+    </LinearLayout>
+    <View
+        android:layout_width="wrap_content"
+        android:background="@color/colorblue"
+        android:layout_marginEnd="20dp"
+        android:layout_height="2dp"></View>
 
     <ListView
         android:layout_width="match_parent"
@@ -20,4 +38,4 @@
         android:layout_marginTop="10dp">
     </ListView>
 
-</FrameLayout>
+</LinearLayout>

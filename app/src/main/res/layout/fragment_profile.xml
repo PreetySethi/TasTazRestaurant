@@ -91,11 +91,12 @@
                     android:layout_gravity="center"
                     android:layout_width="60dp"
                     android:layout_marginStart="20dp"
-                    android:background="@drawable/circlebg"
+                    android:background="@drawable/blue"
                     android:layout_height="60dp">
 
                 </LinearLayout>
         <TextView
+            android:id="@+id/pro_account"
             android:layout_width="wrap_content"
             android:layout_gravity="center"
             android:text="Account"
@@ -105,9 +106,12 @@
 
         </TextView>
         <View
-            android:layout_width="210dp"
-            android:layout_height="wrap_content"></View>
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:background="?android:attr/listDivider" />
         <TextView
+            android:layout_marginEnd="5dp"
             android:layout_width="wrap_content"
             android:layout_gravity="center"
             android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
@@ -132,11 +136,12 @@
                 android:layout_gravity="center"
                 android:layout_width="60dp"
                 android:layout_marginStart="20dp"
-                android:background="@drawable/circlebg"
+                android:background="@drawable/yellow"
                 android:layout_height="60dp">
 
             </LinearLayout>
             <TextView
+                android:id="@+id/pro_address"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
                 android:text="Addresses"
@@ -146,9 +151,13 @@
 
             </TextView>
             <View
-                android:layout_width="190dp"
-                android:layout_height="wrap_content"></View>
+
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="?android:attr/listDivider" />
             <TextView
+                android:layout_marginEnd="5dp"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
                 android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
@@ -163,13 +172,14 @@
             android:layout_height="90dp">
             <LinearLayout
                 android:layout_gravity="center"
-                android:layout_width="60dp"
-                android:layout_marginStart="20dp"
-                android:background="@drawable/circlebg"
-                android:layout_height="60dp">
+                android:layout_width="70dp"
+                android:layout_marginStart="15dp"
+                android:background="@drawable/orange"
+                android:layout_height="70dp">
 
             </LinearLayout>
             <TextView
+                android:id="@+id/pro_payment"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
                 android:text="Payment"
@@ -179,9 +189,13 @@
 
             </TextView>
             <View
-                android:layout_width="205dp"
-                android:layout_height="wrap_content"></View>
+
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="?android:attr/listDivider" />
             <TextView
+                android:layout_marginEnd="5dp"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
                 android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
@@ -198,24 +212,29 @@
                 android:layout_gravity="center"
                 android:layout_width="60dp"
                 android:layout_marginStart="20dp"
-                android:background="@drawable/circlebg"
+                android:background="@drawable/green"
                 android:layout_height="60dp">
 
             </LinearLayout>
             <TextView
+                android:id="@+id/pro_settings"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
 
                 android:text="Settings"
                 android:textSize="18sp"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="15dp"
                 android:layout_height="wrap_content">
 
             </TextView>
             <View
-                android:layout_width="210dp"
-                android:layout_height="wrap_content"></View>
+
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="?android:attr/listDivider" />
             <TextView
+                android:layout_marginEnd="5dp"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
                 android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
@@ -233,22 +252,26 @@
                 android:layout_gravity="center"
                 android:layout_width="60dp"
                 android:layout_marginStart="20dp"
-                android:background="@drawable/circlebg"
+                android:background="@drawable/bluetor"
                 android:layout_height="60dp">
 
             </LinearLayout>
             <TextView
+                android:id="@+id/pro_reward"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
                 android:text="Reward Credits"
                 android:textSize="18sp"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="15dp"
                 android:layout_height="wrap_content">
 
             </TextView>
             <View
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"></View>
+                android:layout_marginEnd="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="?android:attr/listDivider" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"

@@ -4,11 +4,13 @@
     <color name="colorGreen">#4CAF50</color>
     <color name="colorPrimaryDark">#0A0A0A</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="colorOrange">#FF6F00</color>
     <color name="colorwhite">#FFFFFF</color>
     <color name="colorwhitelight">#F8F8F8</color>
     <color name="colorblue">#1B9CC3</color>
     <color name="colorgrey">#C3C4C9</color>
     <color name="colorgeydark">#C3C4C9</color>
     <color name="textInputLayout">#96ffffff</color>
+    <color name="transwhite">#46A8A5A0</color>
     <color name="colorblack">#2A2A2C</color>
 </resources>
