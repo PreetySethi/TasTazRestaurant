@@ -1,5 +1,6 @@
 package com.zovvo.tastaz.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
@@ -11,6 +12,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Handler;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,6 +26,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.zovvo.tastaz.R;
@@ -32,6 +40,10 @@ import com.zovvo.tastaz.interfaces.onSearchListener;
 import com.zovvo.tastaz.interfaces.onSimpleSearchActionsListener;
 import com.zovvo.tastaz.utils.Util;
 import com.zovvo.tastaz.widgets.MaterialSearchView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class DefaultFragment extends Fragment {
     private TabLayout tabLayout;
@@ -64,7 +76,6 @@ public class DefaultFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_default, container, false);
 
-
         mToolbar = (Toolbar) view.findViewById(R.id.toolbar);
        // ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
 
@@ -72,11 +83,7 @@ public class DefaultFragment extends Fragment {
 
 
 
-        //Toolbar toolbar = (Toolbar) view.findViewById(R.id.ettoolbar);
 
-       // EditText pick = (EditText) view.findViewById(R.id.textsearch_cuisine);
-      //  Typeface pick_text = Typeface.createFromAsset(getActivity().getAssets(),  "fonts/NevisBold-KGwl.ttf");
-       // pick.setTypeface(pick_text);
 
         //Initializing viewPager
         viewPager = (ViewPager) view.findViewById(R.id.viewpager);
@@ -112,6 +119,55 @@ public class DefaultFragment extends Fragment {
 
         setupViewPager(viewPager);
         return view;
+    }
+
+
+   /* public void setTablayoutItemsMode(TabLayout tabLayout, List<Category> categories) {
+        if (categories.size() > 3)
+            tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        else {
+            tabLayout.setTabMode(TabLayout.MODE_FIXED);
+            tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        }
+
+    }*/
+
+    private void categoryurl() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "/public/api/category", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+
+                         {
+                            JSONArray dataArray = jsonObject.getJSONArray("");
+                            for (int i = 0; i < dataArray.length(); i++) {
+
+                                JSONObject dataobj = dataArray.getJSONObject(i);
+                                tabLayout.addTab(tabLayout.newTab().setText(dataobj.getString("name")));
+                            }
+                             ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), jsonObject);
+                             viewPager.setAdapter(adapter);
+
+                             tabLayout.setupWithViewPager(viewPager);
+
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        requestQueue.add(stringRequest);
+
     }
 
 

@@ -78,7 +78,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     TextView lon, lat, active_location, resutText, cusname, cuscontact;
     private static final int REQUEST_LOCATION = 1;
     List<Place.Field> placeField = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS);
-    private static String update_url = "http://192.168.8.108/tas-taz/public/api/user/6";
+    private static String update_url = "http://192.168.8.108/tas-taz/public/api/user?id=";
 
     SharedPreferences pref;
 
