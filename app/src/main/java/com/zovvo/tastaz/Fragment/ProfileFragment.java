@@ -1,6 +1,7 @@
 package com.zovvo.tastaz.Fragment;
 
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.zovvo.tastaz.Activities.PaymentActivity;
 import com.zovvo.tastaz.R;
 
 /**
@@ -43,6 +45,16 @@ public class ProfileFragment extends Fragment {
         Typeface payment_text = Typeface.createFromAsset(view.getContext().getAssets(),  "fonts/NevisBold-KGwl.ttf");
         payment.setTypeface(payment_text);
 
+
+
+        payment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), PaymentActivity.class);
+                startActivity(intent);
+            }
+        });
+
         TextView reward = (TextView) view.findViewById(R.id.pro_reward);
         Typeface reward_text = Typeface.createFromAsset(view.getContext().getAssets(),  "fonts/NevisBold-KGwl.ttf");
         reward.setTypeface(reward_text);
@@ -51,6 +63,9 @@ public class ProfileFragment extends Fragment {
         Typeface setting_text = Typeface.createFromAsset(view.getContext().getAssets(),  "fonts/NevisBold-KGwl.ttf");
         setting.setTypeface(setting_text);
         return view;
+
     }
+
+
 
 }

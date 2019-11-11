@@ -19,6 +19,10 @@ import com.zovvo.tastaz.Fragment.PopularFragment;
 import com.zovvo.tastaz.Model.ProductImage;
 import com.zovvo.tastaz.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import static com.zovvo.tastaz.Adapter.ProductAdapter.cartModels;
@@ -108,8 +112,8 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(CartActivity.this, "order placed", Toast.LENGTH_SHORT).show();
-               // Intent intent = new Intent(CartActivity.this, OrderConfirmationActivity.class);
-              //  startActivity(intent);
+                Intent intent = new Intent(CartActivity.this, OrderConfirmationActivity.class);
+                startActivity(intent);
                 //bookMyOrder();
             }
         });
@@ -125,5 +129,37 @@ public class CartActivity extends AppCompatActivity {
         cartModels.addAll(temparraylist);
         cartModels.clear();
     }
+
+
+   /* private String getItems()
+    {
+        JSONObject dataObj = new JSONObject();
+        try
+        {
+            dataObj.putOpt("lat", "");
+            dataObj.putOpt("long","");
+            dataObj.putOpt("deviceID", "");
+            dataObj.putOpt( "date", "");
+
+            JSONArray cartItemsArray = new JSONArray();
+            JSONObject cartItemsObjedct;
+            for (int i = 0; i < temparraylist.size(); i++)
+            {
+                cartItemsObjedct = new JSONObject();
+                cartItemsObjedct.putOpt("ProductID", temparraylist.get(i)
+                        .getId);
+                cartItemsObjedct.putOpt("ProductQuantity",temparraylist.get(i).getProductQuantity);
+                cartItemsArray.put(cartItemsObjedct);
+            }
+
+            dataObj.put("cartItems", cartItemsArray);
+
+        } catch (JSONException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return dataObj.toString();
+    }*/
 
 }

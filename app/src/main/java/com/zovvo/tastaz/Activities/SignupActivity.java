@@ -4,12 +4,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Base64;
@@ -46,8 +48,8 @@ import java.util.Map;
        private CircularImageView btn_photo_upload;
        EditText name,email,password, con_password,contact;
        String getId;
-       private static String register_url = "http://192.168.8.108/tas-taz/public/app/user";
-       private static String login_url = "http://192.168.8.108/tas-taz/public/app/login";
+       private static String register_url = "http://192.168.8.180/tas-taz/public/app/user";
+       private static String login_url = "http://192.168.8.180/tas-taz/public/app/login";
        private Bitmap bitmap;
        SharedPreferences pref;
        SharedPreferences.Editor editor;
@@ -321,6 +323,12 @@ import java.util.Map;
                data.putOpt("password", con_password.getText().toString());
                data.putOpt("email", email.getText().toString());
                data.putOpt("contact", contact.getText().toString());
+
+              /* SharedPreferences pref = getSharedPreferences("id", Context.MODE_PRIVATE);
+               SharedPreferences.Editor mEditor=pref.edit();
+               mEditor.putString("id", "");
+               mEditor.commit();*/
+
            } catch (JSONException e) {
                e.printStackTrace();
            }
@@ -330,13 +338,11 @@ import java.util.Map;
 
            JSONObject jsonObject = new JSONObject(response);
            if (jsonObject.optString("status").equals("true")){
-
                Login();
                Toast.makeText(SignupActivity.this, "Registered Successfully!", Toast.LENGTH_SHORT).show();
                Intent intent = new Intent(SignupActivity.this,MyLocationUsingLocationAPI.class);
                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                startActivity(intent);
-               //preferenceHelper.putName(jsonObject.getString("name"));
                this.finish();
            }else {
 
@@ -352,13 +358,30 @@ import java.util.Map;
                @Override
                public void onResponse(String response) {
                    //  rQueue.getCache().clear();
-                   //Toast.makeText(SignupActivity.this,response,Toast.LENGTH_LONG).show();
-                  // Toast.makeText(SignupActivity.this,response.toString(),Toast.LENGTH_LONG).show();
+                   //JSONObject jsonObject = null;
+
                    try {
-                       parseData(response);
-                   } catch (JSONException e) {
+                       Log.d("Success", response.toString());
+                       VolleyLog.v("Response:%n %s", response.toString());
+                       // Toast.makeText(SignupActivity.this,response,Toast.LENGTH_LONG).show();
+                       //Toast.makeText(SignupActivity.this,response.toString(),Toast.LENGTH_LONG).show();
+
+                      JSONObject jsonObject = new JSONObject(response);
+                       String token = jsonObject.optJSONObject("data").optString("access_token");
+
+                       if (!token.isEmpty()) {
+
+                           SharedPref.SaveUSER_auth(token, SignupActivity.this);
+
+                       }
+
+                   } catch (Exception e) {
                        e.printStackTrace();
                    }
+                   //Toast.makeText(SignupActivity.this,response,Toast.LENGTH_LONG).show();
+                       // Toast.makeText(SignupActivity.this,response.toString(),Toast.LENGTH_LONG).show();
+
+
                    Log.i("checkLogin", "onResponse: "+response);
                }
            }, new Response.ErrorListener() {
@@ -388,7 +411,7 @@ import java.util.Map;
                public Map<String, String> getHeaders() throws AuthFailureError {
                    //Map<String, String> params = new HashMap<String, String>();
                    Map<String, String> headers = new HashMap<>();
-                   String authid = (String) SharedPref.getUSER_auth(SignupActivity.this);
+                    String authid = (String) SharedPref.getUSER_auth(SignupActivity.this);
                    headers.put("Content-Type", "application/json");
                    headers.put("access_token", authid);
                    return headers;
@@ -399,9 +422,11 @@ import java.util.Map;
        }
        private JSONObject getLoginData() {
            JSONObject data = new JSONObject();
+
            try {
                data.putOpt("email",email .getText().toString());
                data.putOpt("password", password.getText().toString());
+
            } catch (JSONException e) {
                e.printStackTrace();
            }

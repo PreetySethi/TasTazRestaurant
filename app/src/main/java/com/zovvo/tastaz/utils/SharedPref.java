@@ -13,12 +13,9 @@ public class SharedPref {
 
     private static final String APP_KEY = "app_name";
     private static final String USER_auth = "access_token";
-    private static final String Bearer_auth = "Bearer";
 
-    public static String getBearer_auth(String bearer, Context context) {
-        SharedPreferences preferences = context.getSharedPreferences(APP_KEY, Activity.MODE_PRIVATE);
-        return Bearer_auth;
-    }
+
+    private static final String id = "id";
 
     public static void SaveUSER_auth(String auth, Context context) {
         SharedPreferences preferences = context.getSharedPreferences(APP_KEY, Activity.MODE_PRIVATE);
@@ -31,4 +28,14 @@ public class SharedPref {
         SharedPreferences preferences = context.getSharedPreferences(APP_KEY, Activity.MODE_PRIVATE);
         return preferences.getString(USER_auth, "");
     }
+
+
+    public static void Saveid(String auth, Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(APP_KEY, Activity.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(id, id);
+        editor.apply();
+    }
+
+
 }

@@ -132,7 +132,7 @@ public class DefaultFragment extends Fragment {
 
     }*/
 
-    private void categoryurl() {
+   /* private void categoryurl() {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, "/public/api/category", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -168,7 +168,7 @@ public class DefaultFragment extends Fragment {
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         requestQueue.add(stringRequest);
 
-    }
+    }*/
 
 
     public void setCustomFont() {

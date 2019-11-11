@@ -99,16 +99,20 @@ public class MyLocationUsingLocationAPI extends AppCompatActivity implements Con
         Typeface custom_font_text = Typeface.createFromAsset(getAssets(),  "fonts/NevisBold-KGwl.ttf");
         tx.setTypeface(custom_font_text);
 
-        /*    For showing the name in other activty*/
+        TextView cont = (TextView) findViewById(R.id.txt_contact);
+        Typeface contact_text = Typeface.createFromAsset(getAssets(),  "fonts/NevisBold-KGwl.ttf");
+        cont.setTypeface(contact_text);
+
+                    /*    For showing the name in other activty*/
 
                 pref = getSharedPreferences("Registration", 0);
                 // retrieving value from Registration
                 String name = pref.getString("name", null);
                 String contact = pref.getString("contact", null);
-                // Now set these value into textview of second activity
-             //   tx.setText("Hii... "+name);
                     tx.setText(name);
-                /*    For showing the name in other activty*/
+                    cont.setText(contact);
+
+                    /*    For showing the name in other activty*/
 
 
         TextView pick = (TextView) findViewById(R.id.textView);

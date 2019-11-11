@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.OrderConfirmationActivity">
+
+    <include layout="@layout/toolbar" android:id="@+id/toolbar"/>
+
+
+    -<androidx.cardview.widget.CardView android:layout_height="wrap_content" android:layout_width="match_parent" android:layout_centerInParent="true" android:layout_marginRight="20dp" android:layout_marginLeft="20dp" android:layout_gravity="center">
+
+
+    -<RelativeLayout android:layout_height="wrap_content" android:layout_width="wrap_content">
+
+    <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/success" android:layout_marginLeft="10dp" android:textColor="@android:color/black" android:layout_marginTop="10dp" android:textSize="20sp" android:text="Success!"/>
+
+    <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/order" android:layout_marginLeft="10dp" android:textColor="@android:color/black" android:textSize="20sp" android:text="Order placed successfully." android:layout_below="@id/success"/>
+
+    <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/thank_you" android:layout_marginLeft="10dp" android:textColor="@android:color/black" android:textSize="20sp" android:text="Thank you." android:layout_below="@id/order"/>
+
+    <Button android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/ok_button" android:layout_marginRight="20dp" android:textColor="@color/colorwhite" android:textSize="20sp" android:text="OK" android:layout_below="@id/thank_you" android:layout_marginBottom="11dp" android:layout_alignParentRight="true" android:background="@drawable/et_bg"/>
+
+</RelativeLayout>
+
+</androidx.cardview.widget.CardView>
+
+
+
+</RelativeLayout>
