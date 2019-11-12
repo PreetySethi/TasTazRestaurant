@@ -80,7 +80,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private static final int REQUEST_LOCATION = 1;
     List<Place.Field> placeField = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS);
     private static String update_url = "http://192.168.8.180/tas-taz/public/api/user";
-    //String id ="";
 
 
 
@@ -90,19 +89,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        TextView tx = (TextView) findViewById(R.id.txt_cus_name);
-        TextView txt = (TextView) findViewById(R.id.txt_cus_contact);
 
-        pref = getSharedPreferences("Registration", 0);
+        String cname = (String) SharedPref.getname(MapsActivity.this);
+        String ccontact = (String) SharedPref.getcontact(MapsActivity.this);
 
-        String cname = pref.getString("name", null);
-        String ccontact = pref.getString("contact", null);
 
-        // Now set these value into textview of second activity
-        tx.setText(cname);
-        txt.setText(ccontact);
-
-        // requestPermission();
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         configureCameraIdle();
         fetchLastLocation();
@@ -143,6 +134,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         active_location = (TextView) findViewById(R.id.txt_cus_location);
         name = (TextView) findViewById(R.id.txt_cus_name);
         contact = (TextView) findViewById(R.id.txt_cus_contact);
+        name.setText(cname);
+        contact.setText(ccontact);
+
 
     }
 
@@ -169,13 +163,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-       // LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
-       /* MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("I AM Here");
+        LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
+        MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("I AM Here");
         //  googleMap.addMarker(markerOptions);
         googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
 
-        mMap.setOnCameraIdleListener(onCameraIdleListener);*/
+        mMap.setOnCameraIdleListener(onCameraIdleListener);
 
 
     }
@@ -281,11 +275,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         final String lat = this.lat.getText().toString();
         final String lon = this.lon.getText().toString();
         final String activelocation = this.active_location.getText().toString();
-        final String name = this.name.getText().toString();
-        final String contact = this.contact.getText().toString();
-        SharedPreferences prefs = getSharedPreferences("id", Context.MODE_PRIVATE);
-        String id  = prefs.getString("id", null);
+        String cname = (String) SharedPref.getname(MapsActivity.this);
+        String ccontact = (String) SharedPref.getcontact(MapsActivity.this);
+
+        String id  = (String) SharedPref.getid(MapsActivity.this);
+        String access_token = (String) SharedPref.getaccess_token(MapsActivity.this);
         String urlID = update_url+"/"+id;
+        String accesstoken =access_token;
+
 
 
         StringRequest request = new StringRequest(Request.Method.PUT, urlID, new Response.Listener<String>() {
@@ -318,10 +315,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 params.put("lat", lat);
                 params.put("lon", lon);
-                params.put("name", name);
-                params.put("contact", contact);
+                params.put("name", cname);
+                params.put("contact", ccontact);
                 params.put("language", "en");
                 params.put("address", "");
+                params.put("shipping_address_id","");
                 return params;
             }
 
@@ -339,12 +337,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public Map<String, String> getHeaders() throws AuthFailureError {
                 //Map<String, String> params = new HashMap<String, String>();
                 Map<String, String> headers = new HashMap<>();
-                String authid = (String) SharedPref.getUSER_auth(MapsActivity.this);
-               // headers.put("Content-Type", "application/x-www-form-urlencoded");
-                headers.put("Accept", "application/json");
-              // headers.put("access_token", authid);
-                headers.put("Authorization", "Bearer " +authid);
+                headers.put("Authorization","Bearer " + accesstoken);
                 return headers;
+
             }
 
 
@@ -354,14 +349,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private JSONObject getLoginData() {
         JSONObject data = new JSONObject();
+
         try {
 
             data.putOpt("language", "en");
-            data.putOpt("lat", lat);
-            data.putOpt("lon",lon);
-            data.putOpt("name",name);
-            data.putOpt("contact",contact);
-            data.putOpt("address", "");
+            data.putOpt("lat", lat.getText().toString());
+            data.putOpt("lon",lon.getText().toString());
+            data.putOpt("name",name.getText().toString());
+            data.putOpt("contact",contact.getText().toString());
+            data.putOpt("address", "default value");
+            data.putOpt("shipping_address_id", "");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -372,7 +369,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         JSONObject jsonObject = new JSONObject(response);
         if (jsonObject.optString("status").equals("true")) {
-            Toast.makeText(MapsActivity.this, "Registered Successfully!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MapsActivity.this, "Updated Successfully!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(MapsActivity.this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);

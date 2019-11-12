@@ -324,6 +324,7 @@ import java.util.Map;
                data.putOpt("email", email.getText().toString());
                data.putOpt("contact", contact.getText().toString());
 
+
               /* SharedPreferences pref = getSharedPreferences("id", Context.MODE_PRIVATE);
                SharedPreferences.Editor mEditor=pref.edit();
                mEditor.putString("id", "");
@@ -338,6 +339,18 @@ import java.util.Map;
 
            JSONObject jsonObject = new JSONObject(response);
            if (jsonObject.optString("status").equals("true")){
+               String cusid =jsonObject.optJSONObject("data").optString("id");
+               String cusname =jsonObject.optJSONObject("data").optString("name");
+               String cuscontact =jsonObject.optJSONObject("data").optString("contact");
+
+
+               if (!cusid.isEmpty() && !cusname.isEmpty() && !cuscontact.isEmpty()) {
+
+                   SharedPref.Saveid(cusid, SignupActivity.this);
+                   SharedPref.Savename(cusname, SignupActivity.this);
+                   SharedPref.Savecontact(cuscontact, SignupActivity.this);
+
+               }
                Login();
                Toast.makeText(SignupActivity.this, "Registered Successfully!", Toast.LENGTH_SHORT).show();
                Intent intent = new Intent(SignupActivity.this,MyLocationUsingLocationAPI.class);
@@ -366,16 +379,18 @@ import java.util.Map;
                        // Toast.makeText(SignupActivity.this,response,Toast.LENGTH_LONG).show();
                        //Toast.makeText(SignupActivity.this,response.toString(),Toast.LENGTH_LONG).show();
 
-                      JSONObject jsonObject = new JSONObject(response);
-                       String token = jsonObject.optJSONObject("data").optString("access_token");
+                       JSONObject jsonObject = new JSONObject(response);
+                           String token = jsonObject.optString("access_token");
 
-                       if (!token.isEmpty()) {
 
-                           SharedPref.SaveUSER_auth(token, SignupActivity.this);
+                           if (!token.isEmpty()) {
 
-                       }
+                               SharedPref.Saveaccess_token(token, SignupActivity.this);
 
-                   } catch (Exception e) {
+                           }
+
+
+                   }catch (Exception e) {
                        e.printStackTrace();
                    }
                    //Toast.makeText(SignupActivity.this,response,Toast.LENGTH_LONG).show();
@@ -411,9 +426,10 @@ import java.util.Map;
                public Map<String, String> getHeaders() throws AuthFailureError {
                    //Map<String, String> params = new HashMap<String, String>();
                    Map<String, String> headers = new HashMap<>();
-                    String authid = (String) SharedPref.getUSER_auth(SignupActivity.this);
+                   String access_token = (String) SharedPref.getaccess_token(SignupActivity.this);
+
                    headers.put("Content-Type", "application/json");
-                   headers.put("access_token", authid);
+                   //headers.put("access_token", access_token);
                    return headers;
                }
 
