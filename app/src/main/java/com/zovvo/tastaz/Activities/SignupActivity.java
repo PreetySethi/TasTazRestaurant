@@ -48,8 +48,8 @@ import java.util.Map;
        private CircularImageView btn_photo_upload;
        EditText name,email,password, con_password,contact;
        String getId;
-       private static String register_url = "http://192.168.8.180/tas-taz/public/app/user";
-       private static String login_url = "http://192.168.8.180/tas-taz/public/app/login";
+       private static String register_url = "http://dashboard.tas-taz.com/app/user";
+       private static String login_url = "http://dashboard.tas-taz.com/app/login";
        private Bitmap bitmap;
        SharedPreferences pref;
        SharedPreferences.Editor editor;
@@ -267,6 +267,7 @@ import java.util.Map;
            editor = pref.edit();
            editor.putString("name", name);
            editor.putString("contact", contact);
+           editor.putString("email",email);
            editor.commit();
 
 
@@ -342,13 +343,15 @@ import java.util.Map;
                String cusid =jsonObject.optJSONObject("data").optString("id");
                String cusname =jsonObject.optJSONObject("data").optString("name");
                String cuscontact =jsonObject.optJSONObject("data").optString("contact");
+               String cusemail =jsonObject.optJSONObject("data").optString("email");
 
 
-               if (!cusid.isEmpty() && !cusname.isEmpty() && !cuscontact.isEmpty()) {
+               if (!cusid.isEmpty() && !cusname.isEmpty() && !cuscontact.isEmpty() &&!cusemail.isEmpty()) {
 
                    SharedPref.Saveid(cusid, SignupActivity.this);
                    SharedPref.Savename(cusname, SignupActivity.this);
                    SharedPref.Savecontact(cuscontact, SignupActivity.this);
+                   SharedPref.Saveemail(cuscontact, SignupActivity.this);
 
                }
                Login();
@@ -364,8 +367,8 @@ import java.util.Map;
        }
 
        private void Login(){
-           final String password = this.email.getText().toString();
-           final String email = this.password.getText().toString();
+           final String email = this.email.getText().toString();
+           final String password = this.password.getText().toString();
 
            StringRequest request = new StringRequest(Request.Method.POST, login_url, new Response.Listener<String>() {
                @Override

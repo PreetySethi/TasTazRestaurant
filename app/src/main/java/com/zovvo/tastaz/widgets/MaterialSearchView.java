@@ -53,7 +53,7 @@ public class MaterialSearchView extends FrameLayout implements View.OnClickListe
     private ImageView backArrowImg;
     private ListView mFrameLayout;
     private Context mContext;
-    private SearchViewResults searchViewResults;
+
     private FrameLayout progressBarLayout;
     private onSimpleSearchActionsListener searchListener;
     private TextView noResultsFoundText;
@@ -152,7 +152,7 @@ public class MaterialSearchView extends FrameLayout implements View.OnClickListe
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (mOnSearchListener != null) {
                     mOnSearchListener.onSearch(getSearchQuery());
-                    onQuery(getSearchQuery());
+                   // onQuery(getSearchQuery());
                 }
                 toggleClearSearchButton(s);
             }
@@ -272,7 +272,7 @@ public class MaterialSearchView extends FrameLayout implements View.OnClickListe
 
     }
 
-    public void onQuery(String query) {
+   /* public void onQuery(String query) {
         String trim = query.trim();
         if(TextUtils.isEmpty(trim)){
             progressBarLayout.setVisibility(GONE);
@@ -284,7 +284,7 @@ public class MaterialSearchView extends FrameLayout implements View.OnClickListe
             searchViewResults.setListView(mFrameLayout);
             searchViewResults.setSearchProvidersListener(this);
         }
-    }
+    }*/
 
 
     public void hide() {

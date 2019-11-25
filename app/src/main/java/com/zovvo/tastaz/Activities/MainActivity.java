@@ -1,5 +1,6 @@
 package com.zovvo.tastaz.Activities;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -235,5 +236,9 @@ public class MainActivity extends AppCompatActivity implements onSimpleSearchAct
     @Override
     public void error(String localizedMessage) {
 
+    }
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
     }
 }

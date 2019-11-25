@@ -15,7 +15,7 @@
         android:layout_margin="20dp"
         android:layout_height="wrap_content">
         <TextView
-            android:id="@+id/title_history"
+            android:id="@+id/title_notify"
             android:padding="2dp"
             android:layout_marginRight="6dp"
             android:layout_width="match_parent"
@@ -35,6 +35,12 @@
 
         android:layout_height="wrap_content">
 
+    </LinearLayout>
+    <LinearLayout
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/notifyimg">
     </LinearLayout>
 
    <!-- <ListView

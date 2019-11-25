@@ -9,23 +9,107 @@
     <include layout="@layout/toolbar" android:id="@+id/toolbar"/>
 
 
-    -<androidx.cardview.widget.CardView android:layout_height="220dp" android:layout_width="520dp" android:layout_centerInParent="true" android:layout_marginRight="20dp" android:layout_marginLeft="20dp" android:layout_gravity="center">
+    <androidx.cardview.widget.CardView android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_gravity="center">
 
 
-    -<RelativeLayout android:layout_height="wrap_content" android:layout_width="wrap_content">
+        <LinearLayout android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
 
-    <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/success" android:layout_marginLeft="10dp" android:textColor="@android:color/black" android:layout_marginTop="10dp" android:textSize="30sp" android:text="Success!"/>
+            >
 
-    <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/order" android:layout_marginLeft="10dp" android:textColor="@android:color/black" android:textSize="30sp" android:text="Order placed successfully." android:layout_below="@id/success"/>
+            <ImageView
+                android:layout_width="620dp"
+                android:src="@drawable/success"
+                android:id="@+id/thank_you"
+                android:layout_height="680dp">
 
-    <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/thank_you" android:layout_marginLeft="10dp" android:textColor="@android:color/black" android:textSize="30sp" android:text="Thank you." android:layout_below="@id/order"/>
+            </ImageView>
+            <!--   <LinearLayout
+                   android:layout_width="match_parent"
+                   android:orientation="horizontal"
+                   android:layout_gravity="center"
+                   android:gravity="center"
+                   android:layout_height="match_parent">
+                   <TextView
+                       android:id="@+id/grandtotal"
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:layout_gravity="center"
+                       android:gravity="center"
+                       android:textStyle="bold"
+                       android:text="Total Price"
+                       android:textSize="20sp"></TextView>
+                   <TextView
+                       android:id="@+id/grandtotalprice"
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:layout_gravity="center"
+                       android:gravity="center"
+                       android:textStyle="bold"
+                       android:text="ggggjg"
+                       android:textSize="20sp"></TextView>
 
-    <Button android:layout_height="70dp" android:layout_width="170dp" android:id="@+id/ok_button" android:layout_marginRight="20dp" android:textColor="@color/colorwhite" android:textSize="30sp" android:text="OK" android:layout_below="@id/thank_you" android:layout_marginBottom="11dp" android:layout_alignParentRight="true" android:background="@drawable/et_bg"/>
-
-</RelativeLayout>
-
-</androidx.cardview.widget.CardView>
+               </LinearLayout>-->
 
 
+            <TextView
+                android:id="@+id/delivery"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:text="Payment Mode :   Cash On Delivery"
+                android:textSize="35sp">
+
+            </TextView>
+
+            <Button android:layout_height="wrap_content"
+                android:layout_width="150dp"
+                android:padding="20dp"
+                android:id="@+id/ok_button"
+                android:textColor="@color/colorwhite"
+                android:textSize="30sp"
+                android:layout_gravity="end"
+                android:gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_alignParentLeft="true"
+                android:text="OK"
+                android:background="@drawable/et_bg"/>
+
+
+
+            <!--  <TextView android:layout_height="wrap_content"
+
+                  android:layout_width="wrap_content"
+                  android:id="@+id/success"
+                  android:layout_marginLeft="10dp"
+                  android:textColor="@android:color/black"
+                  android:layout_marginTop="10dp"
+                  android:textSize="20sp"
+                  android:text="Success!"/>
+
+              <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/order" android:layout_marginLeft="10dp" android:textColor="@android:color/black" android:textSize="20sp" android:text="Order placed successfully." android:layout_below="@id/success"/>
+
+              <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/thank_you" android:layout_marginLeft="10dp" android:textColor="@android:color/black" android:textSize="20sp" android:text="Thank you." android:layout_below="@id/order"/>-->
+
+
+
+        </LinearLayout>
+
+
+
+
+
+
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

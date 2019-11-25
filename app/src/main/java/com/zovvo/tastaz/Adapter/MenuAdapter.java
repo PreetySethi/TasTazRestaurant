@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.zovvo.tastaz.Model.Menu;
+import com.zovvo.tastaz.Model.favourite;
 import com.zovvo.tastaz.R;
 
 import java.util.List;
@@ -16,9 +17,9 @@ import java.util.List;
 public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.CustomViewHolder>{
 
     private Context mContext;
-    private List<Menu> menus;
+    private List<favourite> menus;
 
-    public MenuAdapter(List<Menu> pizzas, Context mContext) {
+    public MenuAdapter(List<favourite> pizzas, Context mContext) {
         this.mContext = mContext;
         this.menus = pizzas;
     }
@@ -50,11 +51,11 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.CustomViewHold
 
     @Override
     public void onBindViewHolder(final MenuAdapter.CustomViewHolder holder, int position) {
-        Menu pizza = menus.get(position);
+        favourite pizza = menus.get(position);
         holder.name.setText(pizza.getName());
         holder.desc.setText(pizza.getDesc());
         holder.price.setText(pizza.getPrice());
-        holder.image.setImageResource(pizza.getImageResource());
+        holder.image.setImageResource((pizza.getImage()));
     }
 
 

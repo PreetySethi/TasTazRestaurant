@@ -58,7 +58,6 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:hint="Name"
-                                android:textStyle="bold"
                                 android:inputType="textEmailAddress"
                                 android:maxLines="1"
                                 android:textColor="@android:color/white"
@@ -75,7 +74,7 @@
                                 android:layout_height="match_parent"
                                 android:drawablePadding="16dp"
                                 android:hint="Email"
-                                android:textStyle="bold"
+
                                 android:inputType="textEmailAddress"
                                 android:maxLines="1"
                                 android:textColor="@android:color/white"
@@ -92,7 +91,7 @@
                                 android:drawablePadding="16dp"
                                 android:hint="Mobile | +974"
                                 android:maxLength="8"
-                                android:textStyle="bold"
+
                                 android:textColorHint="@color/colorwhite"
                                 android:inputType="number"
                                 android:maxLines="1"
@@ -102,9 +101,22 @@
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="match_parent"
                             android:textColorHint="@color/colorgeydark"
+                            app:passwordToggleEnabled="true"
+                            app:passwordToggleTint="@color/colorblue"
                             android:layout_height="match_parent">
 
                             <EditText
+                                android:id="@+id/et_password"
+                                android:layout_width="match_parent"
+                                android:layout_height="42dp"
+                                android:gravity="left"
+                                android:hint="Password"
+                                android:textColor="@color/colorwhite"
+                                android:inputType="textPassword"
+                                android:selectAllOnFocus="true"
+                                android:textStyle="bold"
+                                android:singleLine="true" />
+                            <!--<EditText
                                 android:id="@+id/et_password"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -114,23 +126,26 @@
                                 android:inputType="textEmailAddress"
                                 android:maxLines="1"
                                 android:textColor="@android:color/white"
-                                android:textSize="18sp" />
+                                android:textSize="18sp" />-->
                         </com.google.android.material.textfield.TextInputLayout>
+
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="match_parent"
                             android:textColorHint="@color/colorgeydark"
+                            app:passwordToggleEnabled="true"
+                            app:passwordToggleTint="@color/colorblue"
                             android:layout_height="match_parent">
                             <EditText
                                 android:id="@+id/et_con_password"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:drawablePadding="16dp"
-                                android:hint="Confirm Password"
+                                android:layout_height="42dp"
+                                android:gravity="left"
+                                android:hint="Confirm password"
+                                android:inputType="textPassword"
+                                android:selectAllOnFocus="true"
                                 android:textStyle="bold"
-                                android:inputType="textEmailAddress"
-                                android:maxLines="1"
-                                android:textColor="@android:color/white"
-                                android:textSize="18sp" />
+                                android:textColor="@color/colorwhite"
+                                android:singleLine="true" />
                         </com.google.android.material.textfield.TextInputLayout>
 
 

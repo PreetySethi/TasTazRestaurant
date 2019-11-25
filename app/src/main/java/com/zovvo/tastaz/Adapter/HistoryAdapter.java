@@ -46,11 +46,23 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.CustomVi
         Typeface desc_text = Typeface.createFromAsset(itemView.getContext().getAssets(),  "fonts/NevisBold-KGwl.ttf");
         desc.setTypeface(desc_text);
 
-        TextView view = (TextView) itemView.findViewById(R.id.order_view);
-        Typeface view_text = Typeface.createFromAsset(itemView.getContext().getAssets(),  "fonts/NevisBold-KGwl.ttf");
-        view.setTypeface(view_text);
+        TextView or = (TextView) itemView.findViewById(R.id.orderid);
+        Typeface or_text = Typeface.createFromAsset(itemView.getContext().getAssets(),  "fonts/NevisBold-KGwl.ttf");
+        or.setTypeface(or_text);
 
-        view.setOnClickListener(new View.OnClickListener() {
+        TextView date = (TextView) itemView.findViewById(R.id.date);
+        Typeface date_text = Typeface.createFromAsset(itemView.getContext().getAssets(),  "fonts/NevisBold-KGwl.ttf");
+        date.setTypeface(date_text);
+
+       /* TextView view = (TextView) itemView.findViewById(R.id.order_view);
+        Typeface view_text = Typeface.createFromAsset(itemView.getContext().getAssets(),  "fonts/NevisBold-KGwl.ttf");
+        view.setTypeface(view_text);*/
+
+       /* TextView deliveryboy = (TextView) itemView.findViewById(R.id.tv_deliveryboy);
+        Typeface deliveryboy_text = Typeface.createFromAsset(itemView.getContext().getAssets(),  "fonts/NevisBold-KGwl.ttf");
+        deliveryboy.setTypeface(deliveryboy_text);*/
+
+       /* view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //onButtonShowPopupWindowClick(view);
@@ -61,7 +73,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.CustomVi
                 myactivity.addFlags(FLAG_ACTIVITY_NEW_TASK);
                 mContext.getApplicationContext().startActivity(myactivity);
             }
-        });
+        });*/
 
         return new HistoryAdapter.CustomViewHolder(itemView);
     }
@@ -116,14 +128,13 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.CustomVi
     }
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
-        public TextView oid,date ;
+        public TextView oid,date,deliveryboy;
 
         public CustomViewHolder(View itemView) {
             super(itemView);
             oid= (TextView) itemView.findViewById(R.id.tv_orderid);
             date = (TextView) itemView.findViewById(R.id.tv_date);
-
-
+            //deliveryboy=(TextView) itemView.findViewById(R.id.tv_deliveryboy);
         }
     }
 

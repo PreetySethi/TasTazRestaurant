@@ -45,6 +45,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DefaultFragment extends Fragment {
     private TabLayout tabLayout;
 
@@ -66,6 +69,13 @@ public class DefaultFragment extends Fragment {
     private FloatingActionButton fab;
 
 
+    private final List<Fragment> mFragmentList = new ArrayList<>();
+    //Title List
+    private final List<String> mFragmentTitleList = new ArrayList<>();
+    private ViewPagerAdapter adapter;
+    String myData = "";
+
+
     public DefaultFragment() {
         // Required empty public constructor
     }
@@ -82,17 +92,30 @@ public class DefaultFragment extends Fragment {
 
 
 
+        //create multiple titles, but use OneFragment() for every new tab
+
+
+
 
 
 
         //Initializing viewPager
         viewPager = (ViewPager) view.findViewById(R.id.viewpager);
+        categoryurl();
+
+        tabLayout = (TabLayout) view.findViewById(R.id.tablayout);
+        tabLayout.setupWithViewPager(viewPager);
+        // Tab ViewPager setting
+       // viewPager.setOffscreenPageLimit(mFragmentList.size());
+       // tabLayout.setupWithViewPager(viewPager);
+
+
         viewPager.setOffscreenPageLimit(3);
 
         //Initializing the tablayout
-        tabLayout = (TabLayout) view.findViewById(R.id.tablayout);
+       // tabLayout = (TabLayout) view.findViewById(R.id.tablayout);
 
-        tabLayout.setTabMode(com.google.android.material.tabs.TabLayout.MODE_SCROLLABLE);
+       // tabLayout.setTabMode(com.google.android.material.tabs.TabLayout.MODE_SCROLLABLE);
         tabLayout.setSmoothScrollingEnabled(true);
         tabLayout.setupWithViewPager(viewPager);
 
@@ -132,7 +155,7 @@ public class DefaultFragment extends Fragment {
 
     }*/
 
-   /* private void categoryurl() {
+    private void categoryurl() {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, "/public/api/category", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -147,8 +170,11 @@ public class DefaultFragment extends Fragment {
                                 JSONObject dataobj = dataArray.getJSONObject(i);
                                 tabLayout.addTab(tabLayout.newTab().setText(dataobj.getString("name")));
                             }
-                             ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), jsonObject);
-                             viewPager.setAdapter(adapter);
+                             setupViewPager(viewPager);
+                             tabLayout.setupWithViewPager(viewPager);
+                             // Tab ViewPager setting
+                             viewPager.setOffscreenPageLimit(3);
+                             tabLayout.setupWithViewPager(viewPager);
 
                              tabLayout.setupWithViewPager(viewPager);
 
@@ -168,27 +194,9 @@ public class DefaultFragment extends Fragment {
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         requestQueue.add(stringRequest);
 
-    }*/
-
-
-    public void setCustomFont() {
-
-        ViewGroup vg = (ViewGroup) tabLayout.getChildAt(0);
-        int tabsCount = vg.getChildCount();
-
-        for (int j = 0; j < tabsCount; j++) {
-            ViewGroup vgTab = (ViewGroup) vg.getChildAt(j);
-
-            int tabChildsCount = vgTab.getChildCount();
-
-            for (int i = 0; i < tabChildsCount; i++) {
-                View tabViewChild = vgTab.getChildAt(i);
-                if (tabViewChild instanceof TextView) {
-                    ((TextView) tabViewChild).setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "fonts/NevisBold-KGwl.ttf"));
-                }
-            }
-        }
     }
+
+
     private void setupViewPager(ViewPager viewPager)
     {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager());
@@ -199,11 +207,11 @@ public class DefaultFragment extends Fragment {
         notifyFragment =new NotifyFragment();
         profileFragment =new ProfileFragment();
         adapter.addFragment(popularFragment,"Popular");
-        adapter.addFragment(recommendedFragment,"Recommended");
-        adapter.addFragment(topreviewFragment,"Top review");
-        adapter.addFragment(orderHistoryFragment,"Tab one");
-        adapter.addFragment(notifyFragment,"Tab two");
-        adapter.addFragment(profileFragment,"Tab three");
+        //adapter.addFragment(recommendedFragment,"Recommended");
+        //adapter.addFragment(topreviewFragment,"Top review");
+        adapter.addFragment(orderHistoryFragment," History");
+        adapter.addFragment(notifyFragment,"Notify");
+        adapter.addFragment(profileFragment,"Profile");
         viewPager.setAdapter(adapter);
     }
 

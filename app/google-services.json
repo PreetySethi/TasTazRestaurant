@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "478885437988",
+    "firebase_url": "https://tastaz-test.firebaseio.com",
+    "project_id": "tastaz-test",
+    "storage_bucket": "tastaz-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:478885437988:android:8c3ad22544e49e4d19aeb1",
+        "android_client_info": {
+          "package_name": "com.zovvo.tastaz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "478885437988-n6c2tiljevhactrbfnbu3bujldmnnlj7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zovvo.tastaz",
+            "certificate_hash": "c2657b08598f9e87e64d939faefb366525e70da0"
+          }
+        },
+        {
+          "client_id": "478885437988-hcmf0mrqqtvbbfmh5j1ljbf64di0a826.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAHLXF_03rAn4ekX03WM7b4dUQy_xqS28"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "478885437988-qa56otna5uol9mu29kov95le0e2f69qj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

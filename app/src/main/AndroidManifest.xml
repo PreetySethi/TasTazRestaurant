@@ -15,13 +15,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeNo"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.PaymentActivity"></activity>
-        <activity android:name=".Activities.OrderConfirmationActivity" />
+        <activity android:name=".Activities.PaymentActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".Activities.OrderConfirmationActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Activities.ViewOrderActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Translucent" />
         <activity
             android:name=".Activities.CartActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MyLocationUsingHelper"
@@ -29,6 +33,7 @@
             android:screenOrientation="portrait" />
         <activity android:name=".MyLocationUsingLocationAPI" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".Activities.MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity
@@ -39,11 +44,7 @@
         <activity
             android:name=".Activities.LoginActivity"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
         <activity
@@ -53,6 +54,11 @@
             android:name=".Activities.SplashActivity"
             android:noHistory="true"
             android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".Activities.MainActivity"

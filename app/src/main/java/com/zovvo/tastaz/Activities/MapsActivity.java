@@ -69,21 +69,25 @@ import java.util.Map;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
+    SharedPreferences.Editor editor;
+
 
     private GoogleMap mMap;
     AutocompleteSupportFragment autocompleteFragment;
     private GoogleMap.OnCameraIdleListener onCameraIdleListener;
     Location currentLocation;
+    EditText address;
     FusedLocationProviderClient fusedLocationProviderClient;
     private static final int REQUEST_CODE = 101;
     TextView lon, lat, active_location, resutText, name, contact;
     private static final int REQUEST_LOCATION = 1;
     List<Place.Field> placeField = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS);
-    private static String update_url = "http://192.168.8.180/tas-taz/public/api/user";
+    private static String update_url = "http://dashboard.tas-taz.com/api/user";
 
 
 
     SharedPreferences pref;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,7 +126,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-        EditText address = (EditText) findViewById(R.id.et_address);
+        address = (EditText) findViewById(R.id.et_address);
         Typeface address_font = Typeface.createFromAsset(getAssets(), "fonts/NevisBold-KGwl.ttf");
         address.setTypeface(address_font);
 
@@ -132,6 +136,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         lat = (TextView) findViewById(R.id.txt_cus_latitude);
         lon = (TextView) findViewById(R.id.txt_cus_longitude);
         active_location = (TextView) findViewById(R.id.txt_cus_location);
+        address =(EditText) findViewById(R.id.et_address);
         name = (TextView) findViewById(R.id.txt_cus_name);
         contact = (TextView) findViewById(R.id.txt_cus_contact);
         name.setText(cname);
@@ -151,7 +156,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onSuccess(Location location) {
                 if (location != null) {
                     currentLocation = location;
-                    Toast.makeText(MapsActivity.this, currentLocation.getLatitude() + "" + currentLocation.getLongitude(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(MapsActivity.this, currentLocation.getLatitude() + "" + currentLocation.getLongitude(), Toast.LENGTH_SHORT).show();
                     SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                             .findFragmentById(R.id.map);
                     mapFragment.getMapAsync(MapsActivity.this);
@@ -274,9 +279,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         final String lat = this.lat.getText().toString();
         final String lon = this.lon.getText().toString();
+        final String address= this.address.getText().toString();
         final String activelocation = this.active_location.getText().toString();
         String cname = (String) SharedPref.getname(MapsActivity.this);
         String ccontact = (String) SharedPref.getcontact(MapsActivity.this);
+
+        pref = getSharedPreferences("Registration", 0);
+        editor = pref.edit();
+        editor.putString("lat", lat);
+        editor.putString("lon", lon);
+        editor.commit();
 
         String id  = (String) SharedPref.getid(MapsActivity.this);
         String access_token = (String) SharedPref.getaccess_token(MapsActivity.this);
@@ -305,7 +317,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.e("Error: ", error.getMessage());
-                Toast.makeText(MapsActivity.this, error.toString(), Toast.LENGTH_LONG).show();
+               // Toast.makeText(MapsActivity.this, error.toString(), Toast.LENGTH_LONG).show();
                 Log.e("checkerror", "onErrorResponse: " + error.getMessage());
             }
         }) {
@@ -318,8 +330,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 params.put("name", cname);
                 params.put("contact", ccontact);
                 params.put("language", "en");
-                params.put("address", "");
-                params.put("shipping_address_id","");
+                params.put("address", address);
+                params.put("shipping_address_id","0");
                 return params;
             }
 
@@ -341,8 +353,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 return headers;
 
             }
-
-
         };
         VolleySingleton.getInstance(this).addToRequestQueue(request);
     }
@@ -357,8 +367,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             data.putOpt("lon",lon.getText().toString());
             data.putOpt("name",name.getText().toString());
             data.putOpt("contact",contact.getText().toString());
-            data.putOpt("address", "default value");
-            data.putOpt("shipping_address_id", "");
+            data.putOpt("address", address.getText().toString());
+            data.putOpt("shipping_address_id", "0");
         } catch (JSONException e) {
             e.printStackTrace();
         }

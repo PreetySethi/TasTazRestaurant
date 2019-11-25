@@ -2,6 +2,7 @@ package com.zovvo.tastaz.Fragment;
 
 
 import android.app.ProgressDialog;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -44,8 +46,13 @@ public class NotifyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notify, container, false);
+        View view = inflater.inflate(R.layout.fragment_notify, container, false);
 
+        TextView name = (TextView) view.findViewById(R.id.title_notify);
+        Typeface pick_text = Typeface.createFromAsset(getContext().getAssets(),  "fonts/NevisBold-KGwl.ttf");
+        name.setTypeface(pick_text);
+
+        return view;
 
     }
 

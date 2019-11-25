@@ -19,12 +19,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zovvo.tastaz.Activities.CartActivity;
 import com.zovvo.tastaz.Adapter.MenuAdapter;
 import com.zovvo.tastaz.Adapter.ProductAdapter;
 import com.zovvo.tastaz.Model.Menu;
+import com.zovvo.tastaz.Model.favourite;
 import com.zovvo.tastaz.R;
 import com.zovvo.tastaz.utils.Converter;
 
@@ -35,7 +37,7 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class FavouriteFragment extends Fragment {
-    List<Menu> menus = new ArrayList<>();
+    List<favourite> menus = new ArrayList<>();
     private RecyclerView recyclerView;
     private MenuAdapter pAdapter;
 
@@ -51,6 +53,9 @@ public class FavouriteFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_favourite, container, false);
 
+        TextView name = (TextView) view.findViewById(R.id.title_favourite);
+        Typeface pick_text = Typeface.createFromAsset(getContext().getAssets(),  "fonts/NevisBold-KGwl.ttf");
+        name.setTypeface(pick_text);
 
 
         recyclerView = (RecyclerView) view.findViewById(R.id.favourite_recycler_view);
@@ -65,12 +70,12 @@ public class FavouriteFragment extends Fragment {
         pAdapter.notifyDataSetChanged();
         return view;
     }
-    private void populatePizzaDetails() {
-        Menu pizza = new Menu("Deluxe Veggie","fresh vegetables",R.drawable.lollipop,"24");
+   private void populatePizzaDetails() {
+       favourite pizza = new favourite("34","Chicken Lollipop"," juicy",R.drawable.foodeight);
         menus.add(pizza);
-        pizza = new Menu("Farm House","spicy spices",R.drawable.foodtwo,"18");
+        pizza = new favourite("56","veg biryani","vegetables",R.drawable.foodone);
         menus.add(pizza);
-        pizza = new Menu("Peppy Paneer","sorted begies",R.drawable.foodthre,"25");
+        pizza = new favourite("45","Chicken delight","chicken",R.drawable.foodseven);
         menus.add(pizza);
     }
 

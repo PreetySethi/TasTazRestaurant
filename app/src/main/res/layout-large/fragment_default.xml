@@ -7,7 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment.DefaultFragment">
 
-    <LinearLayout
+   <!-- <LinearLayout
         android:layout_width="match_parent"
         android:id="@+id/divdersearch"
         android:background="@color/colorblue"
@@ -33,7 +33,7 @@
                 android:textColor="@color/colorgrey" />
         </LinearLayout>
 
-    </LinearLayout>
+    </LinearLayout>-->
 
     <LinearLayout
         android:orientation="vertical"

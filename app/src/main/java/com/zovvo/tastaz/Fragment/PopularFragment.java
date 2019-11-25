@@ -4,45 +4,48 @@ package com.zovvo.tastaz.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
-import android.widget.Switch;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.zovvo.tastaz.Activities.CartActivity;
 import com.zovvo.tastaz.Adapter.ProductAdapter;
+
 import com.zovvo.tastaz.utils.Converter;
 import com.zovvo.tastaz.Model.Menu;
 import com.zovvo.tastaz.R;
+import com.zovvo.tastaz.utils.SharedPref;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class PopularFragment extends Fragment implements ProductAdapter.CallBackUs, ProductAdapter.HomeCallBack {
     //List<Menu> menus = new ArrayList<>();
     public static ArrayList<Menu> menus = new ArrayList<>();
     public static int cart_count = 0;
     ProductAdapter productAdapter;
-    RecyclerView productRecyclerView;
 
-   /* private RecyclerView precyclerView;
-    private MenuAdapter pAdapter;*/
+   // private ArrayList<Menu> menus = new ArrayList<>();
+    RecyclerView recyclerView;
+
 
 
     public PopularFragment() {
@@ -52,61 +55,88 @@ public class PopularFragment extends Fragment implements ProductAdapter.CallBack
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_popular, container, false);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         View view = inflater.inflate(R.layout.fragment_popular, container, false);
+        recyclerView = view.findViewById(R.id.product_recycler_view);
 
 
-        populatePizzaDetails();
-        productAdapter = new ProductAdapter(getContext(),this,menus);
-        productRecyclerView = view.findViewById(R.id.product_recycler_view);
 
+        //populatePizzaDetails();
+       // productAdapter = new ProductAdapter(menus,getContext(),this);
+        recyclerView.setAdapter(productAdapter);
+       // productAdapter.notifyDataSetChanged();
+
+        recyclerView.setHasFixedSize(true);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2, LinearLayoutManager.VERTICAL, false);
-        productRecyclerView.setLayoutManager(gridLayoutManager);
-        productRecyclerView.setAdapter(productAdapter);
-        productAdapter.notifyDataSetChanged();
+        recyclerView.setLayoutManager(gridLayoutManager);
 
-        Switch pick = (Switch) view.findViewById(R.id.switchveg);
-        pick.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-               // Log.v("Switch State=", " only Vegeterian items will show"+isChecked);
-                if (isChecked) {
-                    pick.setText("Only Vegeterian items");  //To change the text near to switch
-                    Log.d("You are :", "Checked");
-                } else {
-                    pick.setText("Vegeterian and Non-vegeterian items");  //To change the text near to switch
-                    Log.d("You are :", "Checked");
-                }
-            }
-
-        });
+        parse(view);
 
 
-        Typeface pick_text = Typeface.createFromAsset(getActivity().getAssets(),  "fonts/NevisBold-KGwl.ttf");
-        pick.setTypeface(pick_text);
          return view;
+
 
     }
 
+    public void parse(View view) {
+        String url = "http://dashboard.tas-taz.com/api/product";
+        String base="http://dashboard.tas-taz.com/";
 
-    private void populatePizzaDetails() {
-        Menu pizza = new Menu("Deluxe Veggie","fresh vegetables",R.drawable.lollipop,"24");
-        menus.add(pizza);
-        pizza = new Menu("Farm House","spicy spices",R.drawable.foodtwo,"18");
-        menus.add(pizza);
-        pizza = new Menu("Peppy Paneer","sorted begies",R.drawable.foodthre,"25");
-        menus.add(pizza);
-        pizza = new Menu("Mexican  Wave","mushroom slices",R.drawable.imagefour,"16");
-        menus.add(pizza);
-        pizza = new Menu("Chicken Fiesta","boiled and spicy",R.drawable.bbq,"30");
-        menus.add(pizza);
-        pizza = new Menu("Chicken Delight","pieces and golden",R.drawable.salmonfish,"20");
-        menus.add(pizza);
-        pizza = new Menu("Chicken Dominator","veggies",R.drawable.foodseven,"25");
-        menus.add(pizza);
-        pizza = new Menu("Non-Veg Supreme","vegetable",R.drawable.foodeight,"55");
-        menus.add(pizza);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    JSONArray xc = object.getJSONArray("data");  // data array
+
+                    for (int i = 0; i < xc.length(); i++) {
+                        JSONObject gg = xc.getJSONObject(i);
+                        String pricety = gg.getString("price_type");
+                        String price = gg.getString("price");
+                        String model=gg.getString("model");
+                                    if (!model.isEmpty() ) {
+                                        SharedPref.Savemodel(model, getContext());
+                                    }
+                        String veg =gg.getString("veg");
+                                JSONObject jsonObject = xc.getJSONObject(i);
+                                JSONArray files = jsonObject.getJSONArray("info"); // info array
+                                JSONObject Jsonfilename = files.getJSONObject(0);
+                                String name = Jsonfilename.getString("name");
+                                String desc =Jsonfilename.getString("description");
+                                String product_id =Jsonfilename.getString("product_id");
+                                        if (!product_id.isEmpty() ) {
+                                            SharedPref.Saveproduct_id(product_id, getContext());
+                                        }
+                                        JSONObject json = xc.getJSONObject(i);
+                                        JSONArray imagearray = json.getJSONArray("image");// image array
+                                        JSONObject Jsonimagename = imagearray.getJSONObject(0);
+                                            String imageurl = Jsonimagename.getString("src");
+                                            String imageset = (base + imageurl);
+                                            String imageccheck=imageset;
+                                        Menu n= new Menu(price,name,desc,pricety,imageccheck);
+                                        menus.add(n);
+                                        parseadapter();
+                                    recyclerView.setAdapter(productAdapter);
+
+
+                    }
+                } catch (Exception e) {
+                  //  Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getActivity(), "please make sure internet is available", Toast.LENGTH_SHORT).show();
+                    }
+                });
+        Volley.newRequestQueue(getActivity().getApplicationContext()).add(stringRequest);
+
+    }
+    public void parseadapter()
+    {
+        productAdapter = new ProductAdapter(menus,getContext(),this);
     }
 
     @Override
@@ -119,6 +149,8 @@ public class PopularFragment extends Fragment implements ProductAdapter.CallBack
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+
+
     }
 
     @Override
@@ -129,7 +161,7 @@ public class PopularFragment extends Fragment implements ProductAdapter.CallBack
         menuItem.setIcon(Converter.convertLayoutToImage(getActivity(), cart_count, R.drawable.ic_shopping_cart_white_24dp));
     }
 
-    @Override
+   @Override
     public boolean onOptionsItemSelected(MenuItem item) {
        int id = item.getItemId();
         switch (id) {
@@ -149,6 +181,7 @@ public class PopularFragment extends Fragment implements ProductAdapter.CallBack
 
     @Override
     public void updateCartCount(Context context) {
+
         getActivity().invalidateOptionsMenu();
     }
 

@@ -3,8 +3,6 @@ package com.zovvo.tastaz.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,33 +15,36 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+import com.squareup.picasso.Picasso;
 import com.zovvo.tastaz.Activities.CartActivity;
 import com.zovvo.tastaz.Fragment.PopularFragment;
 import com.zovvo.tastaz.Model.Menu;
 import com.zovvo.tastaz.Model.ProductImage;
 import com.zovvo.tastaz.R;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.zovvo.tastaz.Fragment.PopularFragment.cart_count;
 import static com.zovvo.tastaz.Fragment.PopularFragment.menus;
 
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
 
+
+    public static ArrayList<Menu> menus;
     public static ArrayList<ProductImage> cartModels = new ArrayList<ProductImage>();
     public static ProductImage cartModel;
     Context context;
-    Toast toast;
-    LinearLayout ln;
-    private CallBackUs mCallBackus;
-    private HomeCallBack homeCallBack;
-    public static ArrayList<Menu> menus;
-    public ProductAdapter( Context context, HomeCallBack mCallBackus,ArrayList<Menu> menus) {
+    Picasso picasso;
+    public CallBackUs mCallBackus;
+    public HomeCallBack homeCallBack;
+
+    public ProductAdapter(ArrayList<Menu> menus, Context context, HomeCallBack mCallBackus) {
+        this.menus = menus;
         this.context = context;
         this.homeCallBack = mCallBackus;
-        this.menus = menus;
     }
 
 
@@ -57,39 +58,19 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull final ProductAdapter.ViewHolder holder,  int position) {
-        Menu pizza = menus.get(position);
-        holder.name.setText(pizza.getName());
-        holder.desc.setText(pizza.getDesc());
-        holder.price.setText(pizza.getPrice());
-        holder.image.setImageResource(pizza.getImageResource());
+
+
+        Menu m = menus.get(position);
+        holder.price.setText(m.getPrice());
+        holder.name.setText(m.getName());
+        holder.desc.setText(m.getDesc());
+        Picasso.get().load(menus.get(position).getImage()).into(holder.image);
 
 
 
-        holder.quantity.setText(String.valueOf(0));
-                final int[] cartCounter = {0};//{(arrayListImage.get(position).getStocks())};
-        holder.cartDecrement.setEnabled(false);
-        holder.cartDecrement.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (cartCounter[0] == 1) {
-                            Toast.makeText(context, "cant add less than 0", Toast.LENGTH_SHORT).show();
-                        } else {
-                            cartCounter[0] -= 1;
-                            holder.quantity.setText(String.valueOf(cartCounter[0]));
-                        }
-
-                    }
-                });
-        holder.cartIncrement.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        holder.cartDecrement.setEnabled(true);
-                        cartCounter[0] += 1;
-                        holder.quantity.setText(String.valueOf(cartCounter[0]));
-
-
-                    }
-                });
+       holder.quantity.setText(String.valueOf(0));
+                final int[] cartCounter = {1};//
+        // {(arrayListImage.get(position).getStocks())};
         holder.viewCartDialog.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -101,59 +82,49 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         holder.updateQtyDialog.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        for (int i=0; i < 2; i++)
-                        {
-                            Toast toast = Toast.makeText(context, String.valueOf(cartCounter[0])  +"  Items added to cart", Toast.LENGTH_SHORT);
-                            View view = toast.getView();
-                            view.setBackgroundResource(R.drawable.toast);
-                            TextView text = view.findViewById(android.R.id.message);
-                            text.setTextColor(Color.parseColor("#FFFFFF"));
-                            toast.show();
-
-                        }
-
-
                         // from these line of code we add items in cart
                         cartModel = new ProductImage();
                         cartModel.setProductQuantity((cartCounter[0]));
+                        cartModel.setProductName(menus.get(position).getName());
                         cartModel.setProductPrice(menus.get(position).getPrice());
-                        cartModel.setProductImage(menus.get(position).getImageResource());
                         cartModel.setTotalCash(cartCounter[0] *
                                 Integer.parseInt(menus.get(position).getPrice()));
                         Log.d("pos", String.valueOf(position));
 
                         cartModels.add(cartModel);
 
+                        Toast toast = Toast.makeText(context,  "                                        Added to cart                                                  ", Toast.LENGTH_SHORT);
+                        View view = toast.getView();
+                        view.setBackgroundResource(R.drawable.toast);
+                        TextView text = view.findViewById(android.R.id.message);
+                        text.setTextColor(Color.parseColor("#FFFFFF"));
+                        toast.show();
+
 //
                         // from these lines of code we update badge count value
-                        PopularFragment.cart_count = 0;
+                      /* PopularFragment.cart_count = 0;
                         for (int i = 0; i < cartModels.size(); i++) {
                             for (int j = i + 1; j < cartModels.size(); j++) {
-                                if (cartModels.get(i).getProductImage().equals(cartModels.get(j).getProductImage())) {
+                                if (cartModels.get(i).getProductImage()==(cartModels.get(j).getProductImage())) {
                                     cartModels.get(i).setProductQuantity(cartModels.get(j).getProductQuantity());
                                     cartModels.get(i).setTotalCash(cartModels.get(j).getTotalCash());
-                                    //          cartModels.get(i).setImageIdSlide(cartModels.get(j).getImageIdSlide());
                                     cartModels.remove(j);
                                     j--;
                                     Log.d("remove", String.valueOf(cartModels.size()));
 
                                 }
                             }
-                        }
+                        }*/
                         PopularFragment.cart_count = cartModels.size();
-
-                        // from this interface method calling we show the updated value of cart cout in badge
                         homeCallBack.updateCartCount(context);
                     }
 
                 });
-
-
-
     }
 
     @Override
-    public int getItemCount() {
+    public int getItemCount()
+    {
         return menus.size();
     }
 

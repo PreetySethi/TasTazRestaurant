@@ -3,6 +3,7 @@ package com.zovvo.tastaz.Model;
 public class History {
     private String orderid;
     private String date;
+    private String deliveryboy;
 
     public String getDate() {
         return date;
@@ -19,8 +20,9 @@ public class History {
     public void setOrderid(String orderid) {
         this.orderid = orderid;
     }
-    public History(String orderid, String date) {
+    public History(String orderid, String date ) {
         this.orderid = orderid;
         this.date=date;
+        this.deliveryboy=deliveryboy;
     }
 }

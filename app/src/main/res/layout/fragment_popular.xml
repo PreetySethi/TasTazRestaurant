@@ -9,8 +9,7 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="match_parent">
-
-        <Switch
+     <!--   <Switch
             android:id="@+id/switchveg"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"
@@ -18,14 +17,15 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorGreen"
             android:textStyle="bold"
-            android:text="Veg Only " />
+            android:text="Veg Only " />-->
+
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginTop="10dp"
             android:id="@+id/product_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
+
 
     </LinearLayout>
 

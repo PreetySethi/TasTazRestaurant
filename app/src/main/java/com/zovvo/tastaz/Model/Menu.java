@@ -3,9 +3,17 @@ package com.zovvo.tastaz.Model;
 public class Menu {
     private String name;
     private String desc;
-    private int imageResource;
+    private  String pricetype;
+    private String image;
     private String price;
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String imageResource) {
+        this.image = imageResource;
+    }
     public String getName()
     {
         return name;
@@ -14,16 +22,6 @@ public class Menu {
     public void setName(String name)
     {
         this.name = name;
-    }
-
-    public int getImageResource()
-    {
-        return imageResource;
-    }
-
-    public void setImageResource(int imageResource)
-    {
-        this.imageResource = imageResource;
     }
 
     public String getPrice()
@@ -42,11 +40,20 @@ public class Menu {
     public void setDesc(String desc) {
         this.desc = desc;
     }
+    public String getPricetype() {
+        return pricetype;
+    }
 
-    public Menu(String name, String desc,int imageResource, String price) {
-        this.name = name;
-        this.desc=desc;
-        this.imageResource = imageResource;
-        this.price = price;
+    public void setPricetype(String pricetype) {
+        this.pricetype = pricetype;
+    }
+
+    public Menu(String price,String name, String desc,String pricetype, String image ) {
+        setName(name);
+        setPrice(price);
+        setDesc(desc);
+        setPricetype(pricetype);
+        setImage(image);
+
     }
 }

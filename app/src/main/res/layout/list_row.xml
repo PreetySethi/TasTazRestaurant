@@ -31,18 +31,33 @@
                     android:layout_gravity="center"
                     android:layout_height="wrap_content"
                     android:text="Water bottle"
+                    android:maxLength="15"
+                    android:textColor="#040404"
+                    android:textSize="15dip"
+                    android:typeface="sans" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content">
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="QR "
                     android:textColor="#040404"
                     android:textSize="15dip"
                     android:typeface="sans" />
                 <TextView
-                    android:id="@+id/product_desc"
+                    android:id="@+id/product_price"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Water bottle"
+                    android:text="23"
                     android:textColor="#040404"
                     android:textSize="15dip"
                     android:typeface="sans" />
+                </LinearLayout>
+
             </LinearLayout>
             <View
                 android:layout_marginStart="20dp"
