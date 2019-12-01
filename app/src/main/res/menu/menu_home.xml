@@ -11,7 +11,7 @@
         android:id="@+id/action_history"
         android:enabled="true"
         android:title="Order History"
-        android:icon="@drawable/history"
+        android:icon="@drawable/ohistory"
          />
     <item
         android:id="@+id/action_info"

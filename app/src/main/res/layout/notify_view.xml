@@ -2,49 +2,72 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-
-    android:layout_height="match_parent">
-
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/imagefour"
-        android:layout_marginLeft="10dp"
-        android:scaleType="fitXY"
-        android:id="@+id/iv"/>
-
+    android:background="@color/colorwhite"
+    android:layout_height="wrap_content">
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginBottom="10dp"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
 
-        <TextView
+                <ImageView
+                    android:id="@+id/imgnotify"
+                    android:layout_width="68dp"
+                    android:layout_height="65dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/imagefour" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="120dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:id="@+id/headingnotify"
+                        android:text="Make Grilling A Healthy Experience"/>
+
+                    <TextView
+                        android:id="@+id/descnotify"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="if you are cooking your food properly on your barbeque, you're getting delightful results every time" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:id="@+id/timeposted"
+                        android:text="20 min ago"/>
+
+
+                </LinearLayout>
+
+
+
+        </LinearLayout>
+        <View
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
             android:layout_marginTop="5dp"
-            android:layout_weight="1"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:id="@+id/name"
-            android:text="ddd"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:id="@+id/country"
-            android:text="ddd"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:id="@+id/city"
-            android:text="20 min ago"/>
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/colorgrey"
+            android:layout_height="1dp">
+        </View>
+
 
     </LinearLayout>
-
 
 
 </LinearLayout>

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/backgroundlogin"
-    tools:context=".Activities.SignupActivity">
+    tools:context=".loginModule.Fragment.Activities.SignupActivity">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -17,6 +17,14 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="28sp"
+                android:textColor="@color/colorwhite"
+                android:text=" CREATE ACCOUNT"></TextView>
             <RelativeLayout
                 android:layout_width="220dp"
                 android:layout_height="wrap_content">

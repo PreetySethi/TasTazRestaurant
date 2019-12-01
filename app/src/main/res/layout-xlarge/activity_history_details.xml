@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:background="@drawable/popupbg"
     android:layout_height="wrap_content"
-    tools:context=".Activities.ViewOrderActivity">
+    tools:context=".loginModule.Fragment.Activities.ViewOrderActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rview_history"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".Activities.CartActivity">
+    tools:context=".loginModule.Fragment.Activities.CartActivity">
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
@@ -16,9 +16,6 @@
                 android:layout_width="wrap_content"
                 android:orientation="vertical"
                 android:layout_height="match_parent">
-
-
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:orientation="vertical"

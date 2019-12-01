@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:gravity="center"
     android:layout_height="match_parent"
-    tools:context=".Activities.SplashActivity">
+    tools:context=".loginModule.Fragment.view.SplashActivity">
 
   <!--  <VideoView
         android:layout_width="match_parent"

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorwhite"
-    tools:context=".Fragment.NotifyFragment">
+    tools:context=".loginModule.Fragment.Fragment.NotifyFragment">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -30,24 +30,19 @@
         android:background="@color/colorblue"
         android:layout_marginEnd="20dp"
         android:layout_height="2dp"></View>
-    <LinearLayout
-        android:layout_width="wrap_content"
 
-        android:layout_height="wrap_content">
-
-    </LinearLayout>
-    <LinearLayout
+   <!-- <LinearLayout
         android:layout_margin="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/notifyimg">
-    </LinearLayout>
+    </LinearLayout>-->
 
-   <!-- <ListView
+   <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/lv"
         android:layout_marginTop="10dp">
-    </ListView>-->
+    </ListView>
 
 </LinearLayout>

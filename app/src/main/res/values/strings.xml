@@ -23,5 +23,17 @@
     <string name="child_text">Enter child here...</string>
     <string name="base_url">http://dashboard.tas-taz.com/</string>
 
+    <string name="slide_1_title">Hello Foodie !</string>
+    <string name="slide_1_desc">Please Signup to add food into your favourites !</string>
+
+    <string name="slide_3_title">Get Notified</string>
+    <string name="slide_3_desc">Best discounts on every single service we offer!</string>
+
+    <string name="slide_2_title">Order History</string>
+    <string name="slide_2_desc">There is no history </string>
+
+    <string name="slide_4_title">Profile View </string>
+    <string name="slide_4_desc">Signup To continue</string>
+
 
 </resources>

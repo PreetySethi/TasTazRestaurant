@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.zovvo.tastaz">
+    package="com.simplistq.tastaz">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -15,16 +15,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeNo"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.PaymentActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".Activities.OrderConfirmationActivity"
-            android:screenOrientation="portrait"/>
+        <activity android:name=".guestModule.MainGuestActivity"></activity>
+        <activity android:name=".loginModule.Fragment.Activities.AddressActivity" />
         <activity
-            android:name=".Activities.ViewOrderActivity"
+            android:name=".loginModule.Fragment.Activities.AccountActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".loginModule.Fragment.Activities.PaymentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".loginModule.Fragment.Activities.OrderConfirmationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".loginModule.Fragment.Activities.ViewOrderActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Translucent" />
         <activity
-            android:name=".Activities.CartActivity"
+            android:name=".loginModule.Fragment.Activities.CartActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -33,35 +40,33 @@
             android:screenOrientation="portrait" />
         <activity android:name=".MyLocationUsingLocationAPI" />
         <activity
-            android:screenOrientation="portrait"
-            android:name=".Activities.MapsActivity"
-            android:label="@string/title_activity_maps" />
-        <activity
-            android:name=".Activities.SignupActivity"
-            android:screenOrientation="portrait" >
-
-        </activity>
-        <activity
-            android:name=".Activities.LoginActivity"
-            android:screenOrientation="portrait">
-
-
-        </activity>
-        <activity
-            android:name=".Activities.HomeActivity"
+            android:name=".loginModule.Fragment.Activities.MapsActivity"
+            android:label="@string/title_activity_maps"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activities.SplashActivity"
-            android:noHistory="true"
-            android:screenOrientation="portrait">
+            android:name=".loginModule.Fragment.Activities.SignupActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".loginModule.Fragment.Activities.LoginActivity"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".Activities.MainActivity"
+            android:name=".loginModule.Fragment.Activities.HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".loginModule.Fragment.view.SplashActivity"
+            android:noHistory="true"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            android:name=".loginModule.Fragment.Activities.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 

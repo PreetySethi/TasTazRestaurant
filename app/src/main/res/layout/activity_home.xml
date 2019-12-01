@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/backgroundlogin"
     android:orientation="vertical"
-    tools:context=".Activities.HomeActivity">
+    tools:context=".loginModule.Fragment.Activities.HomeActivity">
 
     <ScrollView
         android:layout_width="match_parent"

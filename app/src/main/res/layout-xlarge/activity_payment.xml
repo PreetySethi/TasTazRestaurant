@@ -6,6 +6,6 @@
     android:layout_margin="50dp"
     android:background="@drawable/payment"
     android:layout_height="match_parent"
-    tools:context=".Activities.PaymentActivity">
+    tools:context=".loginModule.Fragment.Activities.PaymentActivity">
 
 </LinearLayout>

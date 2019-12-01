@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorwhite"
     android:orientation="vertical"
-    tools:context=".Activities.MapsActivity">
+    tools:context=".loginModule.Fragment.Activities.MapsActivity">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_weight="1"
