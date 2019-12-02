@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.simplistq.tastaz.loginModule.Fragment.Model.ProductImage;
@@ -36,10 +38,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.CustomViewHold
         Typeface pick_text = Typeface.createFromAsset(itemView.getContext().getAssets(),  "fonts/Sansation_Regular.ttf");
         name.setTypeface(pick_text);
 
-        TextView desc = (TextView) itemView.findViewById(R.id.pizzaDesc);
-        Typeface desc_text = Typeface.createFromAsset(itemView.getContext().getAssets(),  "fonts/Sansation_Regular.ttf");
-        desc.setTypeface(desc_text);
-
         TextView pric = (TextView) itemView.findViewById(R.id.pizzaPrice);
         Typeface pric_text = Typeface.createFromAsset(itemView.getContext().getAssets(),  "fonts/Sansation_Regular.ttf");
         pric.setTypeface(pric_text);
@@ -54,14 +52,31 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.CustomViewHold
 
     @Override
     public void onBindViewHolder(final MenuAdapter.CustomViewHolder holder, int position) {
-        favourite pizza = favs.get(position);
-        holder.name.setText(pizza.getName());
-        holder.price.setText(pizza.getPrice());
-
-
-
         holder.name.setText(favs.get(position).getName());
         holder.price.setText(favs.get(position).getPrice());
+
+
+        holder.removefab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (favs.size() == 1) {
+                    favs.remove(position);
+                    notifyItemRemoved(position);
+                    notifyItemRangeChanged(position, favs.size());
+
+                }
+
+                if (favs.size() > 0) {
+                    favs.remove(position);
+                    notifyItemRemoved(position);
+                    notifyItemRangeChanged(position, favs.size());
+
+                } else {
+                    Toast.makeText(mContext, " Removed from favourites  ", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
 
     }
@@ -74,7 +89,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.CustomViewHold
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
         public TextView name, desc,price;
-        public ImageView image, menu;
+        public ImageView image, menu, removefab;
 
         /**
          * Constructor to initialize the Views
@@ -87,6 +102,8 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.CustomViewHold
             desc= (TextView) itemView.findViewById(R.id.pizzaDesc);
             price = (TextView) itemView.findViewById(R.id.pizzaPrice);
             image = (ImageView) itemView.findViewById(R.id.pizzaImage);
+            removefab = (ImageView) itemView.findViewById(R.id.remove_favourite);
+
 
         }
     }

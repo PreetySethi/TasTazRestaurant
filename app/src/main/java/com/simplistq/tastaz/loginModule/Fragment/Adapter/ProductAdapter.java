@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -138,7 +140,56 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
                 });
 
-        holder.addfavourite.setOnClickListener(new View.OnClickListener() {
+
+        /*holder.textView.setText(storyList.get(position).getTitle());
+        if (storyList.get(position).getIsLiked() == 1)
+            holder.likeCheckBox.setChecked(true);
+        else
+            holder.likeCheckBox.setChecked(false);*/
+
+
+        holder.addfavourite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (buttonView.isPressed()) {
+                    if (isChecked) {
+                        fav = new favourite();
+
+                        fav.setName(menus.get(position).getName());
+                        fav.setPrice(menus.get(position).getPrice());
+                        favs.add(fav);
+
+                        Toast toast = Toast.makeText(context,  "  Added to Favourites ", Toast.LENGTH_SHORT);
+                        holder.addfavourite.setBackgroundResource(R.drawable.ic_favorite_black_24dp);
+                        View view = toast.getView();
+                        view.setBackgroundResource(R.drawable.toast);
+                        TextView text = view.findViewById(android.R.id.message);
+                        text.setTextColor(Color.parseColor("#FFFFFF"));
+                        toast.show();
+                    } else {
+
+                        if (favs.size() == 1) {
+                            favs.remove(position);
+                            notifyItemRemoved(position);
+                            notifyItemRangeChanged(position, favs.size());
+
+                        }
+                        if (favs.size() > 0) {
+                            favs.remove(position);
+                            notifyItemRemoved(position);
+                            notifyItemRangeChanged(position, favs.size());
+                        }
+                        Toast.makeText(context, " Removed  from favorites",
+                                Toast.LENGTH_LONG).show();
+                        holder.addfavourite.setBackgroundResource(R.drawable.ic_favorite_border_black_24dp);
+                    }
+                }
+            }
+        });
+
+
+
+      /* holder.addfavourite.setOnCheckedChangeListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // from these line of code we add items in cart
@@ -149,29 +200,17 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
                 favs.add(fav);
 
                 Toast toast = Toast.makeText(context,  "  Added to Favourites ", Toast.LENGTH_SHORT);
+                holder.addfavourite.setImageResource(R.drawable.ic_favorite_black_24dp);
                 View view = toast.getView();
                 view.setBackgroundResource(R.drawable.toast);
                 TextView text = view.findViewById(android.R.id.message);
                 text.setTextColor(Color.parseColor("#FFFFFF"));
                 toast.show();
 
-                // from these lines of code we update badge count value
-                      /* PopularFragment.cart_count = 0;
-                        for (int i = 0; i < cartModels.size(); i++) {
-                            for (int j = i + 1; j < cartModels.size(); j++) {
-                                if (cartModels.get(i).getProductImage()==(cartModels.get(j).getProductImage())) {
-                                    cartModels.get(i).setProductQuantity(cartModels.get(j).getProductQuantity());
-                                    cartModels.get(i).setTotalCash(cartModels.get(j).getTotalCash());
-                                    cartModels.remove(j);
-                                    j--;
-                                    Log.d("remove", String.valueOf(cartModels.size()));
 
-                                }
-                            }
-                        }*/
             }
 
-        });
+        });*/
     }
 
     @Override
@@ -190,7 +229,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     class ViewHolder extends RecyclerView.ViewHolder {
         public TextView name, desc,price,order,updateQtyDialog,viewCartDialog,quantity;
-        public ImageView image, menu,cartDecrement,cartIncrement,addfavourite;
+        public ImageView image, menu,cartDecrement,cartIncrement;
+        public CheckBox addfavourite;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -199,7 +239,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             price = (TextView) itemView.findViewById(R.id.pizzaPrice);
             image = (ImageView) itemView.findViewById(R.id.pizzaImage);
             order =(TextView) itemView.findViewById(R.id.update_quantity_dialog);
-            addfavourite = (ImageView) itemView.findViewById(R.id.favourite);
+            addfavourite = (CheckBox) itemView.findViewById(R.id.like_button_cb);
 
              cartDecrement = (ImageView)itemView.findViewById(R.id.cart_decrement);
              cartIncrement =(ImageView) itemView.findViewById(R.id.cart_increment);

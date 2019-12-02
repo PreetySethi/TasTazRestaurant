@@ -15,11 +15,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeNo"
         android:usesCleartextTraffic="true">
-        <activity android:name=".guestModule.MainGuestActivity"></activity>
+        <activity android:name=".loginModule.Fragment.Activities.ForgotPasswordActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        <activity android:name=".guestModule.MainGuestActivity" />
         <activity android:name=".loginModule.Fragment.Activities.AddressActivity" />
         <activity
             android:name=".loginModule.Fragment.Activities.AccountActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".loginModule.Fragment.Activities.PaymentActivity"
             android:screenOrientation="portrait" />
@@ -48,23 +56,16 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".loginModule.Fragment.Activities.LoginActivity"
-            android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:screenOrientation="portrait">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-
         <activity
             android:name=".loginModule.Fragment.Activities.HomeActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".loginModule.Fragment.view.SplashActivity"
             android:noHistory="true"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".loginModule.Fragment.Activities.MainActivity"
             android:screenOrientation="portrait"

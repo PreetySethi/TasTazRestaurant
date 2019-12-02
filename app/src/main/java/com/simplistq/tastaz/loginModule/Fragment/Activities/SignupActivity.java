@@ -22,10 +22,12 @@ import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.simplistq.tastaz.loginModule.Fragment.Adapter.VolleySingleton;
 import com.simplistq.tastaz.MyLocationUsingLocationAPI;
@@ -48,6 +50,7 @@ import java.util.Map;
        String getId;
        private static String register_url = "http://dashboard.tas-taz.com/app/user";
        private static String login_url = "http://dashboard.tas-taz.com/app/login";
+       private static String URL_UPLOAD = "http://dashboard.tas-taz.com/app/login";
        private Bitmap bitmap;
        SharedPreferences pref;
        SharedPreferences.Editor editor;
@@ -144,7 +147,7 @@ import java.util.Map;
            progressDialog.setMessage("Uploading...");
            progressDialog.show();
 
-          /* StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_UPLOAD,
+           StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_UPLOAD,
                    new Response.Listener<String>() {
                        @Override
                        public void onResponse(String response) {
@@ -184,7 +187,7 @@ import java.util.Map;
            };
 
            RequestQueue requestQueue = Volley.newRequestQueue(this);
-           requestQueue.add(stringRequest);*/
+           requestQueue.add(stringRequest);
 
 
        }
