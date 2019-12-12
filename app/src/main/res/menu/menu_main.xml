@@ -7,4 +7,9 @@
         android:orderInCategory="100"
         android:title="cart"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/action"
+        android:orderInCategory="100"
+        android:title="text"
+        app:showAsAction="always" />
 </menu>

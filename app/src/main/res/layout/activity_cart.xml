@@ -51,6 +51,16 @@
                 >
             </androidx.recyclerview.widget.RecyclerView>
             </ScrollView>
+                <TextView
+                    android:id="@+id/textcart"
+                    android:layout_width="match_parent"
+                    android:text="Mandatory details ,Please fill to continue"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorblue"
+                    android:layout_margin="10dp"
+                    android:layout_height="match_parent">
+
+                </TextView>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -62,12 +72,12 @@
                 android:layout_height="match_parent">
                 <EditText
                     android:id="@+id/addressone"
-                    android:hint="address line 1"
+                    android:hint="Street no"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <EditText
                     android:id="@+id/addresstwo"
-                    android:hint="address line 2"
+                    android:hint="Building no"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 </EditText>
@@ -135,6 +145,15 @@
                     android:visibility="gone" />
 
             </LinearLayout>
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:visibility="gone" />
+
             <LinearLayout
                 android:id="@+id/proceed_to_book"
                 android:layout_width="match_parent"
@@ -194,7 +213,6 @@
                     android:gravity="center"
                     android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp_white"
                     android:layout_height="wrap_content">
-
                 </TextView>
 
 

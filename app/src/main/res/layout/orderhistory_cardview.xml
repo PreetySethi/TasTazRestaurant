@@ -83,17 +83,17 @@
                         android:layout_marginStart="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Delivered by"
+                        android:text="Delivery Type :"
                         android:layout_marginBottom="10dp"
-                        android:textSize="14sp" />
+                        android:textSize="16sp" />
                     <TextView
                         android:layout_marginStart="10dp"
                         android:id="@+id/tv_deliveryboy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Date"
+                        android:text="Cash On Delivery"
                         android:layout_marginBottom="10dp"
-                        android:textSize="14sp" />-->
+                        android:textSize="16sp" />
                 </LinearLayout>
             </LinearLayout>
              <LinearLayout
@@ -103,20 +103,20 @@
                  android:background="@color/colorwhite"
                  android:gravity="right"
                  android:layout_height="wrap_content">
-                 <TextView
-                     android:id="@+id/order_view"
-                     android:layout_width="100dp"
-                     android:layout_height="28dp"
-                     android:layout_below="@+id/cart_plus_minus_layout"
-                     android:layout_marginStart="2dp"
-                     android:layout_marginEnd="5dp"
-                     android:background="@drawable/et"
-                     android:text="View"
-                     android:textStyle="bold"
-                     android:gravity="center"
-                     android:textColor="@color/colorwhite" />
+                 <!--  <TextView
+                       android:id="@+id/order_view"
+                       android:layout_width="100dp"
+                       android:layout_height="28dp"
+                       android:layout_below="@+id/cart_plus_minus_layout"
+                       android:layout_marginStart="2dp"
+                       android:layout_marginEnd="5dp"
+                       android:background="@drawable/et"
+                       android:text="View"
+                       android:textStyle="bold"
+                       android:gravity="center"
+                       android:textColor="@color/colorwhite" />-->
 
-            </LinearLayout>
+              </LinearLayout>
     </LinearLayout>
     </androidx.cardview.widget.CardView>
 

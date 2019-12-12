@@ -15,39 +15,53 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="vertical"
+            android:layout_gravity="center"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:layout_gravity="center_vertical"
-            android:gravity="center"
             android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/image_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="20mm"
+                android:adjustViewBounds="true"
+                android:scaleType="fitStart"
+                android:layout_gravity="center"
+                android:src="@drawable/login_logo" />
 
-            <RelativeLayout
-                android:layout_width="@dimen/toolbar_profile_width"
-                android:layout_height="wrap_content">
-
-                <com.mikhaellopez.circularimageview.CircularImageView
-                    android:id="@+id/img_profile"
-                    android:layout_width="@dimen/toolbar_profile_width"
-                    android:layout_height="@dimen/toolbar_profile_width"
-                    android:layout_marginBottom="@dimen/activity_padding"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/dummyprofile"
-                    app:civ_border_color="@android:color/white"
-                    app:civ_border_width="5dp" />
-
-            </RelativeLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="30dp"
                 android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:gravity="center">
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
                 <TextView
+                    android:id="@+id/nameg"
+                    android:layout_width="match_parent"
+                    android:text="Hey "
+                    android:textSize="18sp"
+                    android:textColor="@color/colorwhite"
+                    android:gravity="center"
+                    android:layout_height="wrap_content">
+                </TextView>
+
+
+
+                <!--  <com.mikhaellopez.circularimageview.CircularImageView
+                       android:id="@+id/img_profile"
+                       android:layout_width="150dp"
+                       android:layout_height="150dp"
+                       android:layout_marginBottom="@dimen/activity_padding"
+                       android:scaleType="centerInside"
+                       android:src="@drawable/dummyprofile"
+                       app:civ_border_color="@android:color/white"
+                       app:civ_border_width="5dp" />-->
+
+                <TextView
+                    android:layout_below="@+id/img_profile"
                     android:id="@+id/tx_name"
                     android:layout_width="match_parent"
-                    android:text="Hii, Queen"
+                    android:text="Best Java Developer"
                     android:textAllCaps="true"
                     android:textStyle="bold"
                     android:textSize="18sp"
@@ -56,27 +70,25 @@
                     android:layout_height="wrap_content">
                 </TextView>
 
-                <!--<TextView
-                    android:id="@+id/txt_deliver"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_margin="10dp"
-                    android:layout_gravity="center"
-                    android:text="Where can we deliver you today ?"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorwhite"
-                    android:textSize="25sp"
-                    android:typeface="serif"
-                    android:layout_marginBottom="20dp"
-                    android:textStyle="bold"></TextView>-->
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="15dp"
-                    android:src="@drawable/centertext">
+            </LinearLayout>
 
-                </ImageView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="40dp"
+                android:layout_gravity="center"
+
+                android:gravity="center">
+
+                <!--   <ImageView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:padding="15dp"
+                       android:layout_marginBottom="30dp"
+                       android:src="@drawable/centertext">
+
+                   </ImageView>-->
 
 
                 <!--   <RelativeLayout
@@ -131,11 +143,10 @@
                         <TextView
                             android:layout_centerInParent="true"
                             android:id="@+id/tvEmpty"
-                            android:drawableLeft="@drawable/locationtab"
                             android:text="You are here"
                             android:gravity="center"
-                            android:textSize="28sp"
-                            android:textColor="@color/colorgrey"
+                            android:textSize="18sp"
+                            android:textColor="@color/colorblack"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
 
@@ -167,7 +178,8 @@
                             <TextView
                                 android:layout_gravity="center_vertical"
                                 android:id="@+id/textView"
-                                android:textSize="20dp"
+                                android:textSize="15dp"
+                                android:drawableLeft="@drawable/location"
                                 android:layout_marginTop="5dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -177,18 +189,19 @@
                                 android:layout_marginLeft="20dp"
                                 android:layout_marginRight="10dp"
                                 android:layout_marginBottom="5dp"
-                                android:textColor="@color/colorPrimaryDark" />
+                                android:textColor="@color/colorgeydark" />
 
 
                         </LinearLayout>
 
-                        <!--  <TextView
-                              android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
-                              android:gravity="center"
-                              android:layout_alignParentRight="true"
-                              android:drawableStart="@drawable/ic_location_on_black_24dp"
-                              android:id="@+id/txt_loc"/>-->
+                        <TextView
+                            android:visibility="invisible"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_alignParentRight="true"
+
+                            android:id="@+id/txt_contact"/>
 
                     </RelativeLayout>
 
@@ -216,13 +229,13 @@
                         <TextView
                             android:id="@+id/txt_loc"
                             android:layout_gravity="center_vertical"
-                            android:textSize="28dp"
+                            android:textSize="18dp"
                             android:textStyle="bold"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/items_inbetween"
                             android:text="CHANGE LOCATION"
-                            android:textColor="@color/colorblue" />
+                            android:textColor="@color/colorwhite" />
 
 
                     </LinearLayout>
@@ -249,7 +262,7 @@
                           android:layout_width="wrap_content"
                           android:layout_gravity="center"
 
-                          android:layout_height="wrap_content"
+                        ight=  android:layout_he"wrap_content"
                           android:drawableStart="@drawable/ic_location_on_black_24dp"
                           />
 
@@ -259,15 +272,54 @@
                     android:id="@+id/btnLocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="15dp"
-                    android:layout_margin="20dp"
+                    android:padding="10dp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
-                    android:textSize="18dp"
                     android:layout_marginTop="32dp"
                     android:background="@drawable/et_bg"
                     android:text="Yalla, let's GO"
                     android:textAllCaps="true"
                     android:textColor="@color/colorwhite" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/RelativeLayout01"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center"
+                android:layout_height="match_parent"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/textshow"
+                    android:text="@string/getfav"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:textColor="@color/colorwhite"
+                    android:textSize="20sp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:background="@color/colorblue"
+                    android:layout_height="2dp">
+
+                </View>
+
+                <TextView
+                    android:id="@+id/textshoww"
+                    android:text="@string/fooddeliver"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:textSize="20sp"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/colorwhite"
+                    />
+
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.simplistq.tastaz">
+    package="com.zovvo.tastaz">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -15,61 +15,69 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeNo"
         android:usesCleartextTraffic="true">
-        <activity android:name=".loginModule.Fragment.Activities.ForgotPasswordActivity">
+        <activity android:name=".AppSettingsActivity"></activity>
+        <activity
+            android:name=".loginModule.Fragment.Activities.ForgotPasswordActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".guestModule.MainGuestActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".loginModule.Fragment.Activities.AddressActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".loginModule.Fragment.Activities.AccountActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".loginModule.Fragment.Activities.PaymentActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".loginModule.Fragment.Activities.OrderConfirmationActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".loginModule.Fragment.Activities.ViewOrderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Translucent"></activity>
+        <activity
+            android:name=".loginModule.Fragment.Activities.CartActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".MyLocationUsingHelper"
+            android:label="MyLocation"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".MyLocationUsingLocationAPI"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".loginModule.Fragment.Activities.MapsActivity"
+            android:label="@string/title_activity_maps"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".loginModule.Fragment.Activities.SignupActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".loginModule.Fragment.Activities.LoginActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".loginModule.Fragment.Activities.HomeActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".loginModule.Fragment.view.SplashActivity"
+            android:noHistory="true"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            android:name=".loginModule.Fragment.Activities.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".guestModule.MainGuestActivity" />
-        <activity android:name=".loginModule.Fragment.Activities.AddressActivity" />
-        <activity
-            android:name=".loginModule.Fragment.Activities.AccountActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".loginModule.Fragment.Activities.PaymentActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".loginModule.Fragment.Activities.OrderConfirmationActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".loginModule.Fragment.Activities.ViewOrderActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Translucent" />
-        <activity
-            android:name=".loginModule.Fragment.Activities.CartActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".MyLocationUsingHelper"
-            android:label="MyLocation"
-            android:screenOrientation="portrait" />
-        <activity android:name=".MyLocationUsingLocationAPI" />
-        <activity
-            android:name=".loginModule.Fragment.Activities.MapsActivity"
-            android:label="@string/title_activity_maps"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".loginModule.Fragment.Activities.SignupActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".loginModule.Fragment.Activities.LoginActivity"
-            android:screenOrientation="portrait">
-
-        </activity>
-        <activity
-            android:name=".loginModule.Fragment.Activities.HomeActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".loginModule.Fragment.view.SplashActivity"
-            android:noHistory="true"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name=".loginModule.Fragment.Activities.MainActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

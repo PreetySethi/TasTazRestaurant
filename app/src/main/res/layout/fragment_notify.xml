@@ -38,11 +38,11 @@
         android:background="@drawable/notifyimg">
     </LinearLayout>-->
 
-   <ListView
+    <LinearLayout
+        android:layout_margin="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/lv"
-        android:layout_marginTop="10dp">
-    </ListView>
+        android:background="@drawable/notifyimg">
+    </LinearLayout>
 
 </LinearLayout>

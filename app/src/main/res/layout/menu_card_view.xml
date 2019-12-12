@@ -12,6 +12,7 @@
         android:id="@+id/cardview"
         android:layout_width="match_parent"
         android:layout_gravity="center"
+        android:background="@android:color/transparent"
         android:layout_height="wrap_content"
         card_view:cardCornerRadius="4dp">
         <LinearLayout

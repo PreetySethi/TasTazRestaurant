@@ -16,6 +16,8 @@
     <string name="title_activity_maps">Map</string>
     <string name="places_api_key">AIzaSyDfryPX4WzD2zaOpUtE5O-CLnZUC3ZLb3U</string>
     <string name="forgot_password">Enter your registered email_id below and click  on the Password Reset button and we will contact you shortly</string>
+    <string name="getfav">GET YOUR FAVOURITE</string>
+    <string name="fooddeliver">FOOD DELIVERED</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -35,7 +37,9 @@
 
     <string name="slide_4_title">Profile View </string>
     <string name="slide_4_desc">Signup To continue</string>
-    <string name ="resetpassword">RESET YOUR PASSWORD</string>
+    <string name="resetpassword">RESET YOUR PASSWORD</string>
+    <string name="emailcase"> Make sure it is a valid one e.g example@gmail.com</string>
+    <string name="passwordcase"> Must include 8 characters </string>
 
 
 </resources>

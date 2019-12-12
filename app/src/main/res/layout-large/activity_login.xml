@@ -52,6 +52,7 @@
                       android:layout_marginLeft="50dp"
                       android:layout_marginRight="50dp"
                       android:hint="Username"
+                      android:backgroundTint="@color/colorwhite"
                       android:textStyle="bold"
                       android:inputType="textEmailAddress"
                       android:maxLines="1"
@@ -71,12 +72,20 @@
                       android:layout_marginLeft="50dp"
                       android:layout_marginRight="50dp"
                       android:hint="Password"
+                      android:backgroundTint="@color/colorwhite"
                       android:textStyle="bold"
                       android:inputType="textPassword"
                       android:maxLines="1"
                       android:textColor="@android:color/white"
                       android:textSize="25sp" />
               </com.google.android.material.textfield.TextInputLayout>
+              <ProgressBar
+                  android:id="@+id/progressBar"
+                  android:layout_width="match_parent"
+                  android:layout_height="42dp"
+                  android:layout_marginStart="8dp"
+                  android:layout_marginEnd="8dp"
+                  android:visibility="gone" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -110,7 +119,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"/>
             </LinearLayout>
-            <TextView
+          <!--  <TextView
                 android:id="@+id/textforgot"
                 android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
@@ -119,7 +128,7 @@
                 android:textColor="@color/colorwhite"
                 android:textSize="25sp"
                 android:text="Forgot Password ?">
-            </TextView>
+            </TextView>-->
 
             <LinearLayout
                 android:layout_width="match_parent"
